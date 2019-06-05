@@ -5,7 +5,11 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
+<<<<<<< HEAD
 abort('Rails is running in production mode!') if Rails.env.production?
+=======
+abort('Rails ENV is running in production mode!') if Rails.env.production?
+>>>>>>> 4b738b4db9aee185f8d608c2ef5f0736c7fac63e
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -60,6 +64,10 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+<<<<<<< HEAD
+=======
+  config.formatter = :documentation
+>>>>>>> 4b738b4db9aee185f8d608c2ef5f0736c7fac63e
   if Bullet.enable?
     config.before do
       Bullet.start_request

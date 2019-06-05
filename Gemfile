@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
-# authorization
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -56,6 +55,14 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development
   # by keeping your application running in the background.
+
+  # Access an interactive console on exception
+  # pages or by calling 'console' anywhere in the code.
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
+  # Spring speeds up development by keeping your
+  # application running in the background.
+>>>>>>> 4b738b4db9aee185f8d608c2ef5f0736c7fac63e
   # Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -66,16 +73,27 @@ group :test do
   gem 'rspec-rails', '~> 3.8', '>= 3.8.2', group: :production
   # Templates rendering assertions was extracted to rails-controller-testing
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
+<<<<<<< HEAD
   # Check styles with RuboCop
   gem 'rubocop-rails', group: :production
   gem 'rubocop-rspec'
+=======
+  # Check coding style with RuboCop for Rails with RSpec
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
+  # We use popular gem to ease tests creation
+  gem 'shoulda-matchers'
+>>>>>>> 4b738b4db9aee185f8d608c2ef5f0736c7fac63e
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.22'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   # (depricated in favour of webdrivers)
   # gem 'chromedriver-helper'
+<<<<<<< HEAD
   gem 'shoulda-matchers'
+=======
+>>>>>>> 4b738b4db9aee185f8d608c2ef5f0736c7fac63e
   gem 'webdrivers', '~> 3.9', '>= 3.9.4'
 end
 
