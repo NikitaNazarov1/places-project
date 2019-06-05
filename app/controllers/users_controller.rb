@@ -1,7 +1,7 @@
+# frozen_string_literal: true
 
-
+# class Users controller
 class UsersController < ApplicationController
-
   def show
     @user = User.find(params[:id])
   end
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Welcome to the Favorite places!"
+      flash[:success] = 'Welcome to the Favorite places!'
       redirect_to @user
     else
       render 'new'
