@@ -1,27 +1,31 @@
 # README
 
-[WIP] Necessary steps to get the application up and running:
+## Places project status:
+  - [![Build Status](https://travis-ci.com/labs-ruby/places-project.svg?branch=master)](https://travis-ci.com/labs-ruby/places-project)
+
+## [WIP] Necessary steps to get the application up and running:
 
 Ruby version:
-  2.6.3
+  - 2.6.3
 
 Rails version:
-  5.2.3
+  - 5.2.3
 
 System dependencies:
-  are managed by Bundler (https://bundler.io/) (see Gemfile for details)
+  - are managed by Bundler (https://bundler.io/) (see Gemfile for details)
 
 Configuration:
-  see "config" directory
+  - see "config" directory
 
 Database initialization:
-  rails db:setup (create, load schema and seed)
-  rails db:migrate
+  - rake db:setup (create, load schema and seed)
+  - rake db:migrate
 
 How to run the test suite:
-  bundle exec rspec
+  - rake # will run all RSpec and RuboCop checks
+  - bundle exec rspec # only RSpec
 
 Services (job queues, cache servers, search engines, etc.)
 
 Deployment instructions:
-  use Heroku
+  - we use [Heroku](https://heroku.com)
