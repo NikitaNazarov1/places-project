@@ -1,24 +1,31 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Places project status:
+  - [![Build Status](https://travis-ci.com/labs-ruby/places-project.svg?branch=master)](https://travis-ci.com/labs-ruby/places-project)
 
-Things you may want to cover:
+## [WIP] Necessary steps to get the application up and running:
 
-* Ruby version: 2.6.3
+Ruby version:
+  - 2.6.3
 
-* [WIP] System dependencies: Bootstrap
+Rails version:
+  - 5.2.3
 
-* [WIP] Configuration: RSpec, PostgreSQL
+System dependencies:
+  - are managed by Bundler (https://bundler.io/) (see Gemfile for details)
 
-* [WIP] Database creation
+Configuration:
+  - see "config" directory
 
-* Database initialization: rails db:setup
+Database initialization:
+  - rake db:setup (create, load schema and seed)
+  - rake db:migrate
 
-* [WIP] How to run the test suite
+How to run the test suite:
+  - rake # will run all RSpec and RuboCop checks
+  - bundle exec rspec # only RSpec
 
-* [WIP] Services (job queues, cache servers, search engines, etc.)
+Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions: use Heroku
-
-* ...
+Deployment instructions:
+  - we use [Heroku](https://heroku.com)

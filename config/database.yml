@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: places-project_production
-  username: places-project
+  username: <%= ENV['PLACES-PROJECT_DATABASE_USERNAME'] %>
   password: <%= ENV['PLACES-PROJECT_DATABASE_PASSWORD'] %>
