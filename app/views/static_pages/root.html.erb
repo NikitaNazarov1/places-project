@@ -1,22 +1,22 @@
 <% content_for :nav do %>
-  <span class="navbar-brand">Menu</span>
+  <span class="navbar-brand"><%= raw t('.Menu') %></span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto"></ul>
     <form class="form-inline mt-2 mt-md-0">
-      <%= link_to "Sign up", signup_path, class: "form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2" %>
-      <%= link_to "Sign In", login_path, class: "form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2" %>
+      <%= link_to "Регистрация", signup_path, class: "form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2" %>
+      <%= link_to "Вход", login_path, class: "form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2" %>
     </form>
   </div>
 <% end %>
 
 <% content_for :main do %>
-  <h1 class="mt-5 pt-5">Relax in <mark>Places</mark></h1>
-  <p class="lead">Mark your favourite ones</p>
+  <h1 class="mt-5 pt-5"><%= raw t('.headline') %></h1>
+  <p class="lead"><%= t('.mark') %></p>
   <p><%= image_tag "map_with_marks", class: "img-fluid", size: "920x720" %></p>
-  <p class="lead">Share your places with friends</p>
+  <p class="lead"><%= t('.share') %></p>
   <p><%= image_tag "share_with_friends", class: "img-fluid", size: "920x720" %></p>
-  <p>To begin or continue your journey check out the <strong>menu</strong> above</p>
+  <p><%= raw t('.start') %></p>
 <% end %>
