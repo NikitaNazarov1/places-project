@@ -30,4 +30,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  layouts:
+    static_pages:
+      write_us: Write us an email
+  static_pages:
+    root:
+      Menu: Menu
+      headline: "Relax in <mark>Places</mark>"
+      mark: Mark your favourite ones
+      share: Share your places with friends
+      start: To begin or continue your journey use the <strong>menu</strong> above
+      Sign_Up: Sign Up
+      Sign_In: Sign In

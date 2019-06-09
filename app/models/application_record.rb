@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Active Record for application
+# Default Active Record usage
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 end
