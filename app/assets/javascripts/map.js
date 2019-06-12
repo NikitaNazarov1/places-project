@@ -1,32 +1,4 @@
-<% provide(:title, @user.first_name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.first_name %>
-      </h1>
-    </section>
-  </aside>
-</div>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    #map{
-    height:100%;
-    width:100%;
-  }
-  body, html {
-    height:100%;
-    width:100%;
-  }</style>
-  <!--<link href="map.scss" rel="stylesheet">-->
-</head>
-<body>
-<div id="map"></div>
-<script>function initMap(){
+function initMap(){
     var options = {
         zoom:15,
         center:{lat:53.928365, lng:27.685359}
@@ -75,10 +47,4 @@
             });
         }
     }
-} </script>
-<!--<script src="/app/assets/javascripts/map.js"></script>-->
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGVo5Pr11kzS7On3LIm3AkgTiZc6c300E&callback=initMap">
-</script>
-</body>
-</html>
+}

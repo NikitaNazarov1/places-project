@@ -3,9 +3,28 @@ require:
   - rubocop-rspec
 Documentation:
   Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
 AllCops:
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
     - 'bin/{rails,rake}'
     - 'vendor/**/*'
+Metrics/LineLength:
+    Exclude:
+        - 'spec/controllers/users_controller_spec.rb'
+        
+Metrics/BlockLength:
+    Exclude:
+        - 'spec/controllers/users_controller_spec.rb'
+        - 'spec/controllers/sessions_controller_spec.rb'
+       
+RSpec/NestedGroups: 
+   Exclude:
+        - 'spec/controllers/sessions_controller_spec.rb'
+RSpec/ExampleLength:
+    Exclude:
+        - 'spec/system/signup_page_spec.rb'
+        - 'spec/system/login_page_spec.rb'
