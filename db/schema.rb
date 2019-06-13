@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_085210) do
     t.string "activation_digest"
     t.boolean "activated", default: false
     t.datetime "activated_at"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
