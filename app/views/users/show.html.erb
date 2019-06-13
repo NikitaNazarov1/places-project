@@ -7,10 +7,16 @@
         <%= @user.first_name %>
       </h1>
     </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+
   </aside>
 </div>
+
 <html lang="en">
 <head>
+  <%= render 'follow_form' if logged_in? %>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
