@@ -28,3 +28,15 @@ RSpec/ExampleLength:
     Exclude:
         - 'spec/system/signup_page_spec.rb'
         - 'spec/system/login_page_spec.rb'
+Style/MultilineTernaryOperator:
+    Exclude:
+         - 'app/models/user.rb'
+Metrics/AbcSize:
+    Exclude:
+        - 'app/controllers/sessions_controller.rb'
+Rails/SkipsModelValidations:
+    Exclude:
+        - 'app/models/user.rb'
+Rails/HelperInstanceVariable:
+        Exclude:
+         - 'app/helpers/sessions_helper.rb'
