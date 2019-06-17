@@ -1,84 +1,37 @@
 <% provide(:title, @user.first_name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.first_name %>
-      </h1>
-    </section>
-  </aside>
-</div>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    #map{
-    height:100%;
-    width:100%;
-  }
-  body, html {
-    height:100%;
-    width:100%;
-  }</style>
-  <!--<link href="map.scss" rel="stylesheet">-->
+    #map {
+        height: 100%;
+        width: 100%;
+      }
+      html, body {
+        height: 100%;
+        width: 100%;
+      }
+</style>
 </head>
-<body>
-<div id="map"></div>
-<script>function initMap(){
-    var options = {
-        zoom:15,
-        center:{lat:53.928365, lng:27.685359}
-    }
 
-    var map = new google.maps.Map(document.getElementById('map'), options);
+  <body>
 
-    google.maps.event.addListener(map, 'click', function(event){
-        addMarker({coords:event.latLng});
-    });
+    <div id="floating-panel">
+      <input onclick="hideMarkers();" type=button value="Hide Markers">
+      <input onclick="showMarkers();" type=button value="Show All Markers">
+    </div>
 
+    <div class="row">
+      <aside class="col-md-4">
+        <section class="user_info">
+          <h1>
+            <%= gravatar_for @user %>
+            <%= @user.first_name %>
+          </h1>
+        </section>
+      </aside>
+    </div>
 
-    var markers = [
-        {
-            coords:{lat:53.926970, lng:27.681256},
-            content:'<h2>EPAM</h2>'
-        },
-        {
-            coords:{lat:53.928365, lng:27.685359},
-            content:'<h2>EPAM Office</h2>'
-        }
-    ];
-
-    for(var i = 0;i < markers.length;i++){
-        addMarker(markers[i]);
-    }
-
-    function addMarker(props){
-        var marker = new google.maps.Marker({
-            position:props.coords,
-            map:map,
-            //icon:props.iconImage
-        });
-
-        if(props.iconImage){
-            marker.setIcon(props.iconImage);
-        }
-
-        if(props.content){
-            var infoWindow = new google.maps.InfoWindow({
-                content:props.content
-            });
-
-            marker.addListener('click', function(){
-                infoWindow.open(map, marker);
-            });
-        }
-    }
-} </script>
-<!--<script src="/app/assets/javascripts/map.js"></script>-->
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGVo5Pr11kzS7On3LIm3AkgTiZc6c300E&callback=initMap">
-</script>
-</body>
 </html>
