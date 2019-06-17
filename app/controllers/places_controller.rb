@@ -2,11 +2,11 @@
 
 class PlacesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  # before_action :signed_in_user
-  # before_action :correct_user
+  # before_action :signed_in_user, only: [:create, :destroy]
+  # before_action :correct_user,   only: :destroy
 
   def index
-    @places = Place.all
+    @places = current_user.places
   end
 
   def show
@@ -19,7 +19,6 @@ class PlacesController < ApplicationController
 
   def create
     @place = current_user.places.create(place_params)
-    redirect_to current_user
   end
 
   def edit
@@ -32,12 +31,12 @@ class PlacesController < ApplicationController
   end
 
   def destroy
-    Place.find(params[:id]).destroy
+    current_user.places.destroy(params[:id])
   end
 
   private
 
   def place_params
-    params.permit(:title, :description, :coordinates, :user_id)
+    params.require(:place).permit(:title, :description, :coordinates, :user_id)
   end
 end
