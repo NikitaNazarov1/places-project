@@ -79,14 +79,14 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'destroy' do
-    before { delete :destroy, params: {id: user.id} }
+    before { delete :destroy, params: { id: user.id } }
 
     context 'when delete normal user' do
       it { expect { user.destroy }.to change(User, :count).by(-1) }
     end
 
     context 'when delete themselves' do
-      it { expect { admin.destroy }.to_not change(User, :count) }
+      it { expect { admin.destroy }.not_to change(User, :count) }
     end
   end
 end
