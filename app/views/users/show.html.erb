@@ -1,12 +1,11 @@
 <% provide(:title, @user.first_name) %>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     #map {
-        height: 100%;
+        height: 550%;
         width: 100%;
       }
       html, body {
@@ -18,10 +17,7 @@
 
   <body>
 
-    <div id="floating-panel">
-      <input onclick="hideMarkers();" type=button value="Hide Markers">
-      <input onclick="showMarkers();" type=button value="Show All Markers">
-    </div>
+    <div id="map"></div>
 
     <div class="row">
       <aside class="col-md-4">
@@ -33,5 +29,10 @@
         </section>
       </aside>
     </div>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGVo5Pr11kzS7On3LIm3AkgTiZc6c300E&callback=initMap">
+    </script>
+  </body>
 
 </html>
