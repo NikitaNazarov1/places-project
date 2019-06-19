@@ -7,6 +7,7 @@ class PlacesController < ApplicationController
 
   def index
     @places = current_user.places
+    render json: @places
   end
 
   def show
@@ -26,8 +27,8 @@ class PlacesController < ApplicationController
   end
 
   def update
-    @place = current_user.places.update(place_params)
-    redirect_to current_user
+    @place = Place.find(params[:id])
+    @place.update(place_params)
   end
 
   def destroy
