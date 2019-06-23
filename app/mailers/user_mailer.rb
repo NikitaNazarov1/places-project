@@ -6,7 +6,7 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.account_activation.subject
 
-  default from: 'notifications@example.com'
+  default from: 'places.project.epam@gmail.com'
   def account_activation(user)
   @user = user
    mail(to: user.email, subject: 'Account activation')
