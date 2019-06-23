@@ -3,6 +3,19 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  let(:admin) do
+    User.create(admin_params)
+  end
+  let(:admin_params) do
+    {
+      first_name: 'admin',
+      last_name: 'adminov',
+      email: 'admin@gmail.com',
+      password: '1234567',
+      password_confirmation: '1234567',
+      admin: true
+    }
+  end
   let(:user) do
     User.create(params)
   end
@@ -62,6 +75,18 @@ RSpec.describe UsersController, type: :controller do
       before { post :create, params: { user: invalid_params } }
 
       it { is_expected.to render_template(:new) }
+    end
+  end
+
+  describe 'destroy' do
+    before { delete :destroy, params: { id: user.id } }
+
+    context 'when delete normal user' do
+      it { expect { user.destroy }.to change(User, :count).by(-1) }
+    end
+
+    context 'when delete themselves' do
+      it { expect { admin.destroy }.not_to change(User, :count) }
     end
   end
 end
