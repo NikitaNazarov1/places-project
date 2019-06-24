@@ -15,11 +15,16 @@
     </aside>
   </div>
   <%= render 'follow_form' if logged_in? %>
+  <div class="formPlaces" id="formPlaces" hidden="true">
+    <%=render 'places/formCreate'%>
+    <%=render 'places/formUpdate'%>
+    <%=render 'places/formView'%>
+  </div>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     #map {
-        height: 550%;
+        height: 500px;
         width: 100%;
       }
       html, body {
@@ -32,7 +37,6 @@
   <body>
 
     <div id="map"></div>
-
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGVo5Pr11kzS7On3LIm3AkgTiZc6c300E&callback=initMap">
     </script>

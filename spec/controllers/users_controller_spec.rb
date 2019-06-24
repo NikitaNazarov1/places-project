@@ -3,23 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:admin) do
-    User.create(admin_params)
-  end
-  let(:admin_params) do
-    {
-      first_name: 'admin',
-      last_name: 'adminov',
-      email: 'admin@gmail.com',
-      password: '1234567',
-      password_confirmation: '1234567',
-      admin: true
-    }
-  end
+  include SessionsHelper
+
   let(:user) do
-    User.create(params)
+    User.create(valid_params)
   end
-  let(:params) do
+  let(:valid_params) do
     {
 
       first_name: 'John',
@@ -60,13 +49,13 @@ RSpec.describe UsersController, type: :controller do
     context 'with permitting params' do
       it {
         expect(user).to permit(:first_name, :last_name, :email, :password, :password_confirmation)
-          .for(:create, params: { user: params })
+          .for(:create, params: { user: valid_params })
           .on(:user)
       }
     end
 
     context 'with valid params' do
-      before { post :create, params: { user: params } }
+      before { post :create, params: { user: valid_params } }
 
       it { is_expected.to redirect_to assigns(:user) }
     end
@@ -78,15 +67,40 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe 'destroy' do
-    before { delete :destroy, params: { id: user.id } }
+  describe 'PATCH#update' do
+    let(:valid_name) do
+      {
+        first_name: 'Maksim',
+        password: 'password',
+        password_confirmation: 'password'
 
-    context 'when delete normal user' do
-      it { expect { user.destroy }.to change(User, :count).by(-1) }
+      }
     end
 
-    context 'when delete themselves' do
-      it { expect { admin.destroy }.not_to change(User, :count) }
+    let(:invalid_name) do
+      {
+        first_name: 'M',
+        password: 'password',
+        password_confirmation: 'password'
+      }
+    end
+
+    context 'with valid params' do
+      before { log_in user }
+
+      it 'updates the record in the database' do
+        patch :update, params: { id: user.id, user: valid_name }
+        expect(user.reload.first_name).to eq('Maksim')
+      end
+    end
+
+    context 'with invalid params' do
+      before { log_in user }
+
+      it 'not updates the record in the database' do
+        put :update, params: { id: user.id, user: invalid_name }
+        expect(user.reload.first_name).to eq(user.first_name)
+      end
     end
   end
 end

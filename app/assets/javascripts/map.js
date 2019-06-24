@@ -6,6 +6,15 @@ var title;
 var description;
 var coordinates;
 var infowindow;
+var formCreate;
+var formView;
+var formUpdate;
+var current_place_id;
+var current_marker;
+var current_infowindow;
+var infowindow_id = {};
+var marker_id = {};
+var last_id = 0;
 
 function infoCallbackOpen(infowindow, marker) { return function() {
   infowindow.open(map, marker); };
@@ -24,57 +33,73 @@ function closeAllOtherInfowindow(infowindow, marker){
 
   // Adds a marker to the map and push to the array.
 function addMarker(location) {
-  // marker.setMap(null);
+  formCreate.reset();
+  formCreate.coordinates.value = location;
   var marker = new google.maps.Marker({
     position: location,
     map: map,
-    draggable: true,
+    // draggable: true,
     animation: google.maps.Animation.DROP,
     title: 'Your marker',
   });
-  // Form
-  var formCreate = '<form id="places" name="place">'+
-                    '<table>' +
-                    '<tr><td><input type="text" name="title" id="title" placeholder="Title" maxlength = "50" size="40" autofocus=true required=true /> </td> </tr>' +
-                    '<tr><td> <textarea name="description" id="description" placeholder="Description" cols="40" rows="8" maxlength = "300" required></textarea></td> </tr>' +
-                    '<tr><td><input type="button" id="btn" value="Create place!" onclick="submitForm();" /></td></tr>' +
-                    '<input type="hidden" name="coordinates" id="coordinates" value="'+location+'"></form>';
-
 
   // Content for popup
   infowindow = new google.maps.InfoWindow({
     content: formCreate
   });
+  closeAllOtherInfowindow(infowindow, marker);
 
   infowindow.open(map, marker);
 
+  current_infowindow = infowindow;
   infowindows.push(infowindow);
 
-  // deleteMarkers();
-
   markers.push(marker);
+  current_marker = marker;
 
-  marker.addListener('click', function() {
-    map.setZoom(14);
-    map.setCenter(marker.getPosition());
+  google.maps.event.addListener(marker,'click', function() {
+    current_place_id = Number(Object.keys(marker_id).find(key => marker_id[key] === marker));
+    current_marker = marker;
+    current_infowindow = infowindow_id[current_place_id]
     closeAllOtherInfowindow(infowindow, marker);
     deleteMarkers();
   });
 
   // Leftclick open popup
   google.maps.event.addListener(marker, 'click', infoCallbackOpen(infowindow, marker));
-  // // Rightclick close popup
-  // google.maps.event.addListener(marker, 'rightclick', infoCallbackClose(infowindow, marker));
-
-  // google.maps.event.addListener(map, 'click', closeAllOtherInfowindow(map, marker));
 
   google.maps.event.addListener(infowindow, 'closeclick', function(){
-    if(infowindow.getContent() == formCreate){
+    if(current_infowindow.getContent() == formCreate){
       marker.setMap(null);
     }
   });
+
+  $('#placeCreate').bind('ajax:complete', function() {
+    if (last_id == 0) {
+      $.ajax({
+        url: '/places',
+        type: 'GET',
+        success: function(places) {
+          places.forEach(place => {
+            last_id = place.id;
+            setCurrentValue();
+          });
+        }
+      });
+    } else {
+      last_id++;
+      setCurrentValue();
+    }
+    createView();
+  });
 }
 
+function setCurrentValue(){
+  current_place_id = last_id;
+  current_infowindow = infowindow;
+  infowindow_id[current_place_id] = current_infowindow;
+  marker_id[current_place_id] = current_marker;
+}
 
 function initMap() {
   var haightAshbury = {lat: 53.928365, lng: 27.685359};
@@ -86,38 +111,63 @@ function initMap() {
 
   });
 
+  setAllMarkers();
+
+  formCreate = document.getElementById('placeCreate');
+  formView = document.getElementById('placeView');
+  formUpdate = document.getElementById('placeUpdate');
+
+  current_infowindow = new google.maps.InfoWindow({});
+
+  map.addListener('click', function(event) {
+    deleteMarkers();
+    addMarker(event.latLng);
+  });
+}
+
+function setAllMarkers(){
   $.ajax({
     url: '/places',
     type: 'GET',
     success: function(places) {
       places.forEach(place => {
         var location = {lat: place.coordinates.x, lng: place.coordinates.y};
-        // addMarker(location);
         var marker = new google.maps.Marker({
           position: location,
           map: map,
-          animation: google.maps.Animation.DROP,
+          // draggable: true,
           title:  place.title
         });
-        var formView =  '<div id="content">'+
-                        '<h1 id="firstHeading" class="firstHeading">'+place.title+'</h1>'+
-                        '<div id="bodyContent">'+
-                        '<p><b>'+place.description+'</b></p>'+
-                        '</div>';
+        if (place.id > last_id) {
+          last_id = place.id;
+        }
+
+        let currentView = formView;
+
+        currentView.getElementsByTagName('div')[0].id = place.id;
+        currentView.getElementsByTagName('label')[0].textContent = place.title;
+        currentView.getElementsByTagName('label')[1].textContent = place.description;
+        currentView.coordinates.value = location;
 
         infowindow = new google.maps.InfoWindow({
-          content: formView
+          content: currentView.innerHTML
         });
 
+        infowindow_id[place.id] = infowindow;
         infowindows.push(infowindow);
+        current_infowindow = infowindow;
 
-        // markers.push(marker);
-
-        marker.addListener('click', function() {
-          map.setZoom(14);
-          map.setCenter(marker.getPosition());
+        google.maps.event.addListener(marker,'click', function() {
+          current_place_id = place.id;
+          current_marker = marker;
+          current_infowindow = infowindow_id[current_place_id]
           closeAllOtherInfowindow(infowindow, marker);
           deleteMarkers();
+        });
+
+        google.maps.event.addListener(marker, 'dblclick', function() {
+          map.setZoom(14);
+          map.setCenter(marker.getPosition());
         });
 
         // Leftclick open popup
@@ -125,15 +175,9 @@ function initMap() {
 
         // Rightclick close popup
         google.maps.event.addListener(marker, 'rightclick', infoCallbackClose(infowindow, marker));
-        // google.maps.event.addListener(marker, 'click', closeAllInfowindow());
 
       });
     }
-  });
-
-  map.addListener('click', function(event) {
-    deleteMarkers();
-    addMarker(event.latLng);
   });
 }
 
@@ -148,59 +192,65 @@ function clearMarkers() {
   setMapOnAll(null);
 }
 
-// Shows any markers currently in the array.
-function showMarkers() {
-  setMapOnAll(map);
-}
-
 // Deletes all markers in the array by removing references to them.
 function deleteMarkers() {
   clearMarkers();
   markers = [];
 }
 
+function createView(){
+  title = formCreate.title.value;
+  description = formCreate.description.value;
+  coordinates = formCreate.coordinates.value;
+  let currentView = formView;
 
-function updateContent(){
-  var formView =  '<div id="content">'+
-                  '<h1 id="firstHeading" class="firstHeading">'+title+'</h1>'+
-                  '<div id="bodyContent">'+
-                  '<p><b>'+description+'</b></p>'+
-                  '</div>';
-  infowindow.setContent(formView);
+  currentView.getElementsByTagName('div')[0].id = current_place_id;
+  currentView.getElementsByTagName('label')[0].textContent = title;
+  currentView.getElementsByTagName('label')[1].textContent = description;
+  currentView.coordinates.value = coordinates;
+
+  current_infowindow.setContent(currentView.innerHTML);
   markers = markers.pop();
 }
 
-function submitForm() {
-  title = document.getElementById("title").value;
-  description = document.getElementById("description").value;
-  coordinates = document.getElementById("coordinates").value;
+function deletePlace(){
   $.ajax({
-    type: 'POST',
-    url: '/places',
-    data: { place: { title: title, description: description, coordinates: coordinates} },
-    success: updateContent()
+    type: 'DELETE',
+    url: '/places/'+current_place_id,
+    data: {id: current_place_id},
+    success: current_marker.setMap(null)
   });
-  // initMap();
 }
 
-$(document).on('click', '.update', function(){
-  var formView =  '<form id="places" name="place">'+
-                    '<table>' +
-                    '<tr><td><input value="'+ $(this).data('title') +'" type="text" name="title" id="title" placeholder="Title" maxlength = "50" size="40" autofocus=true required=true /> </td> </tr>' +
-                    '<tr><td> <textarea name="description" id="description" placeholder="Description" cols="40" rows="8" maxlength = "300" required>'+  $(this).data('description') +'</textarea></td> </tr>' +
-                    '<tr><td><input type="button" id="btn" value="Update place!" onclick="submitUpdateForm();" /></td></tr>' +
-                    '<input type="hidden" name="id" id="id" value="'+ $(this).data('id')+'"></form>';
-  infowindow.setContent(formView);
-});
+function updatePlace() {
+  if (event.target.id === 'btn-upd') {
+    title = event.currentTarget.childNodes[1].innerText;
+    description = event.currentTarget.childNodes[4].innerText;
+
+    formUpdate.title.attributes[0].value = title;
+    formUpdate.description.innerHTML = description;
+
+    event.currentTarget.innerHTML = formUpdate.innerHTML;
+
+    google.maps.event.addListener(current_infowindow, 'closeclick', function(){
+      current_infowindow.setContent(current_infowindow.content);
+      current_infowindow.close();
+    });
+  }
+}
 
 function submitUpdateForm() {
-  title = document.getElementById("title").value;
-  description = document.getElementById("description").value;
-  id = document.getElementById("id").value;
+  let = id = current_place_id;
+  title  = document.getElementById('title-conf').value;
+  description  = document.getElementById('description-conf').value;
+
+  formView.getElementsByTagName('label')[0].textContent = title;
+  formView.getElementsByTagName('label')[1].textContent = description;
+
   $.ajax({
     type: 'PATCH',
-    url: '/places/'+id,
-    data: { place: { title: title, description: description}, id: id }
-
+    url: '/places/' + id,
+    data: { title: title, description: description, id: id },
+    success: current_infowindow.setContent(formView.innerHTML)
   });
 }

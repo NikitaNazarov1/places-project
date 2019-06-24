@@ -1,0 +1,8 @@
+<%= form_with model: @place, id: 'placeView' do |f| %>
+  <div id="place_id" onclick="updatePlace()">
+  <h2 id="title" class="title"> <%= f.label :title %> </h2>
+  <p><b><h6 id="description" class="description"> <%= f.label :description %> </h6></b></p>
+  <tr><td> <input type="button" id="btn-upd" value="Update"> </td> </tr>
+  <tr><td> <input type="button" id="btn-del" value="Delete" onclick = "deletePlace()"> </td></tr>
+  <%= hidden_field_tag(:coordinates) %>
+<% end %>

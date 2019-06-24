@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
+  post 'users/:id' => 'places#create'
   delete 'logout'  => 'sessions#destroy'
   resources :users do
     member do
