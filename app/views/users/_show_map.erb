@@ -1,0 +1,9 @@
+<% if current_user?(@user) %>
+  <div id="map"></div>
+  <% else %>
+    <% if current_user.following?(@user) %>
+    <div id="map"></div>
+    <% else %>
+    <% end %>
+  </div>
+<% end %>
