@@ -217,6 +217,9 @@ function deletePlace(){
   $.ajax({
     type: 'DELETE',
     url: '/places/'+current_place_id,
+    headers : {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
     data: {id: current_place_id},
     success: current_marker.setMap(null)
   });
@@ -240,7 +243,7 @@ function updatePlace() {
 }
 
 function submitUpdateForm() {
-  let = id = current_place_id;
+  let id = current_place_id;
   title  = document.getElementById('title-conf').value;
   description  = document.getElementById('description-conf').value;
 
@@ -250,6 +253,9 @@ function submitUpdateForm() {
   $.ajax({
     type: 'PATCH',
     url: '/places/' + id,
+    headers : {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
     data: { title: title, description: description, id: id },
     success: current_infowindow.setContent(formView.innerHTML)
   });
