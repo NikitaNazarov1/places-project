@@ -6,7 +6,10 @@ class PlacesController < ApplicationController
   # before_action :correct_user,   only: :destroy
 
   def index
-    @places = current_user.places
+    str = request.referer
+    user_id = str.split('/').last
+    @user = User.find_by(id: user_id)
+    @places = @user.places
     render json: @places
   end
 

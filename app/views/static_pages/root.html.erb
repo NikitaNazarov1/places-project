@@ -6,8 +6,8 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto"></ul>
     <form class="form-inline mt-2 mt-md-0">
-      <%= link_to t('.Sign_Up'), signup_path, class: "form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2" %>
-      <%= link_to t('.Sign_In'), login_path, class: "form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2" %>
+      <%= link_to t('.Sign_Up'), logged_in? ? user_path(current_user) : signup_path, class: "form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2" %>
+      <%= link_to t('.Sign_In'), logged_in? ? user_path(current_user) : login_path, class: "form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2" %>
     </form>
   </div>
 <% end %>
