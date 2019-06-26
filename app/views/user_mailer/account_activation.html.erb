@@ -1,0 +1,10 @@
+<h1>Favorite places</h1>
+
+<p>Привет, <%= @user.first_name %>!</p>
+
+<p>
+  Добро пожаловать в Любимые места! Перейдите по ссылке для активации аккаунта:
+</p>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+                                                    email: @user.email) %>

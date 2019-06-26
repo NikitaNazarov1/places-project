@@ -1,0 +1,20 @@
+ru:
+  layouts:
+    static_pages:
+      write_us: Напишите нам письмо
+  static_pages:
+    root:
+      menu: Меню
+      headline: "Посетите <mark>Places</mark>"
+      mark_and_share: Отмечайте свои любимые места и делитесь с друзьями
+      start: Чтобы начать или продолжить Ваше путешествие используйте <strong>меню</strong> выше
+      sign_up: Регистрация
+      sign_in: Вход
+  users:
+    new:
+      sign_up: Регистрация
+      first_name: Имя
+      last_name: Фамилия
+      email: Email
+      password: Пароль
+      password_confirmation: Подтверждение пароля

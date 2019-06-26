@@ -1,0 +1,44 @@
+<% provide(:title, @user.first_name) %>
+<html lang="en">
+<head>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <h1>
+          <%= gravatar_for @user %>
+          <%= @user.first_name %>
+        </h1>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+    </aside>
+  </div>
+  <%= render 'follow_form' if logged_in? %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #map {
+        height: 500px;
+        width: 100%;
+      }
+      html, body {
+        height: 100%;
+        width: 100%;
+      }
+</style>
+</head>
+
+  <body>
+    <%= render 'show_map' %>
+    <div class="formPlaces" id="formPlaces" hidden="true">
+      <%=render 'places/formCreate'%>
+      <%=render 'places/formUpdate'%>
+      <%=render 'places/formView'%>
+    </div>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGVo5Pr11kzS7On3LIm3AkgTiZc6c300E&callback=initMap">
+    </script>
+  </body>
+
+</html>
