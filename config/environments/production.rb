@@ -27,9 +27,11 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-  # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  # Compress JavaScripts and CSS
+  # config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
+  # We use JS ES6
+  config.assets.js_compressor = Uglifier.new(harmony: true)
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   # config.assets.compile = false
@@ -73,6 +75,19 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "places-project_#{Rails.env}"
 
+  #host = 'localhost:3000'
+  #config.action_mailer.default_url_options = { host: host }
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #    :address => "smtp.gmail.com",
+  #    :port => 587,
+  #    :domain => "gmail.com",
+  #    :user_name => "places.project.epam@gmail.com",
+  #    :password => "guyyb789",
+  #    :authentication => "plain",
+  #    :enable_starttls_auto => true
+  #}
+  #config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and

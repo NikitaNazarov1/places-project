@@ -3,13 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) do
-    User.create(first_name: 'Ivan',
-                last_name: 'Ivanov',
-                email: 'example.com',
-                password: '12345',
-                password_confirmation: '12345')
-  end
+  let(:user) { create(:user) }
 
   describe '#first_name' do
     it { is_expected.to validate_presence_of(:first_name) }

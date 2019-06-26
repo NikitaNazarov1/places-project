@@ -1,22 +1,20 @@
 <% content_for :nav do %>
-  <span class="navbar-brand"><%= raw t('.Menu') %></span>
+  <span class="navbar-brand"><%= raw t('.menu') %></span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto"></ul>
     <form class="form-inline mt-2 mt-md-0">
-      <%= link_to t('.Sign_Up'), signup_path, class: "form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2" %>
-      <%= link_to t('.Sign_In'), login_path, class: "form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2" %>
+      <%= link_to t('.sign_up'), logged_in? ? user_path(current_user) : signup_path, class: "form-control btn btn-outline-primary my-2 my-sm-0 mr-2 ml-2" %>
+      <%= link_to t('.sign_in'), logged_in? ? user_path(current_user) : login_path, class: "form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2" %>
     </form>
   </div>
 <% end %>
 
 <% content_for :main do %>
   <h1 class="mt-5 pt-5"><%= raw t('.headline') %></h1>
-  <p class="lead"><%= t('.mark') %></p>
+  <p class="lead"><%= t('.mark_and_share') %></p>
   <p><%= image_tag "map_with_marks", class: "img-fluid", size: "920x720" %></p>
-  <p class="lead"><%= t('.share') %></p>
-  <p><%= image_tag "share_with_friends", class: "img-fluid", size: "920x720" %></p>
   <p><%= raw t('.start') %></p>
 <% end %>

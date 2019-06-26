@@ -1,19 +1,22 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-RSpec.describe 'Things user sees on the root page', type: :system do
+RSpec.describe 'Sign Up page', type: :system do
   before { visit '/signup' }
 
-  it 'Sign up title' do
-    expect(page).to have_selector('h1', text: 'Sign up')
+  let(:user) { create(:user) }
+
+  it 'there is \'Sign Up\' title' do
+    expect(page).to have_selector('h1', text: 'Sign Up')
   end
-  it 'Form for registration' do
-    fill_in 'First name', with: 'Ivan'
-    fill_in 'Last name', with: 'Ivanov'
-    fill_in 'Email', with: 'johndoe@example.com'
-    fill_in 'Password', with: 'password'
-    fill_in 'Confirmation', with: 'password'
-    click_button 'Create my account'
-    expect(page).to have_content('Account')
+
+  it 'user can sign up' do
+    fill_in 'First name', with: user.first_name
+    fill_in 'Last name', with: user.last_name
+    fill_in 'Email', with: 'email_that_do@not.exists'
+    fill_in 'Password', with: user.password
+    fill_in 'Password confirmation', with: user.password
+    click_button 'Sign Up'
+    expect(page).to have_content(user.first_name)
   end
 end

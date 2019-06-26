@@ -35,10 +35,17 @@ en:
       write_us: Write us an email
   static_pages:
     root:
-      Menu: Menu
+      menu: Menu
       headline: "Relax in <mark>Places</mark>"
-      mark: Mark your favourite ones
-      share: Share your places with friends
+      mark_and_share: Mark your favourite ones and share with friends
       start: To begin or continue your journey use the <strong>menu</strong> above
-      Sign_Up: Sign Up
-      Sign_In: Sign In
+      sign_up: Sign Up
+      sign_in: Sign In
+  users:
+    new:
+      sign_up: Sign Up
+      first_name: First name
+      last_name: Last name
+      email: Email
+      password: Password
+      password_confirmation: Password confirmation

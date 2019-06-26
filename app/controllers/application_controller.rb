@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def logged_in_user
+    return if logged_in?
+
+    store_location
+    flash[:danger] = 'Please log in.'
+    redirect_to login_url
+  end
+
   def extract_locale_from_accept_language_header
     request.env['HTTP_ACCEPT_LANGUAGE'].to_s.scan(/^[a-z]{2}/).first
   end

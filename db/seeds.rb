@@ -22,13 +22,11 @@ User.create!(first_name:  "Nikita",
 99.times do |n|
   first_name  = Faker::Name.first_name
   last_name = Faker::Name.last_name
-  email = "nikenorr#{n+1}@gmail.com"
+  email = "user#{n+1}@example.com"
   password = "1234567"
-  User.create!(first_name:  first_name,
+  User.create!(first_name: first_name,
                last_name: last_name,
                email: email,
-               password:              password,
-               password_confirmation: password,
-               activated: true,
-               activated_at: Time.zone.now)
+               password: password,
+               password_confirmation: password)
 end

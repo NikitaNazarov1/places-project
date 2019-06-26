@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class PlacesController < ApplicationController
-  skip_before_action :verify_authenticity_token
   # before_action :signed_in_user, only: [:create, :destroy]
   # before_action :correct_user,   only: :destroy
 
   def index
-    @places = current_user.places
+    str = request.referer
+    user_id = str.split('/').last
+    @user = User.find_by(id: user_id)
+    @places = @user.places
     render json: @places
   end
 
@@ -38,6 +40,6 @@ class PlacesController < ApplicationController
   private
 
   def place_params
-    params.require(:place).permit(:title, :description, :coordinates, :user_id)
+    params.permit(:title, :description, :coordinates, :user_id)
   end
 end
