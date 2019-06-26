@@ -29,6 +29,11 @@ class PlacesController < ApplicationController
   end
 
   def update
+    str = request.referer
+    user_id = str.split('/').last
+    @user = User.find_by(id: user_id)
+    return unless current_user == @user
+
     @place = Place.find(params[:id])
     @place.update(place_params)
   end
