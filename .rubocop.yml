@@ -16,14 +16,7 @@ Metrics/LineLength:
     Exclude:
         - 'spec/controllers/users_controller_spec.rb'
         - 'spec/controllers/relationships_controller_spec.rb'
-        
-Metrics/BlockLength:
-    Exclude:
-        - 'spec/controllers/users_controller_spec.rb'
-        - 'spec/controllers/relationships_controller_spec.rb'
-        - 'spec/controllers/sessions_controller_spec.rb'
-       
-RSpec/NestedGroups: 
+RSpec/NestedGroups:
    Exclude:
         - 'spec/controllers/sessions_controller_spec.rb'
 RSpec/ExampleLength:

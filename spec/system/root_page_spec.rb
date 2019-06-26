@@ -21,7 +21,7 @@ RSpec.describe 'Things user sees on the root page', type: :system do
 
   it 'general project desription' do
     expect(page).to have_title('Places') &&
-                    have_text('Mark') &&
-                    have_text('Share')
+                    have_text('mark') &&
+                    have_text('share')
   end
 end

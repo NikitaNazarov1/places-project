@@ -5,17 +5,14 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   include SessionsHelper
 
-  let(:user) do
-    User.create(valid_params)
-  end
   let(:valid_params) do
     {
 
       first_name: 'John',
       last_name: 'Doe',
-      email: 'johndoe@example.com',
-      password: 'password',
-      password_confirmation: 'password'
+      email: 'john.doe@example.com',
+      password: '1234567',
+      password_confirmation: '1234567'
 
     }
   end
@@ -28,6 +25,10 @@ RSpec.describe UsersController, type: :controller do
       password: nil,
       password_confirmation: nil
     }
+  end
+
+  let(:user) do
+    User.create(valid_params)
   end
 
   describe 'GET#new' do
@@ -80,8 +81,8 @@ RSpec.describe UsersController, type: :controller do
     let(:invalid_name) do
       {
         first_name: 'M',
-        password: 'password',
-        password_confirmation: 'password'
+        password: '1234567',
+        password_confirmation: '1234567'
       }
     end
 

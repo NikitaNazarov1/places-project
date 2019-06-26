@@ -8,9 +8,9 @@ RSpec.describe RelationshipsController, type: :controller do
   end
   let(:admin_params) do
     {
-      first_name: 'admin',
-      last_name: 'adminov',
-      email: 'admin@gmail.com',
+      first_name: 'Main',
+      last_name: 'Admin',
+      email: 'admin@example.com',
       password: '1234567',
       password_confirmation: '1234567',
       admin: true
@@ -24,9 +24,9 @@ RSpec.describe RelationshipsController, type: :controller do
 
       first_name: 'John',
       last_name: 'Doe',
-      email: 'johndoe@example.com',
-      password: 'password',
-      password_confirmation: 'password'
+      email: 'john.doe@example.com',
+      password: '1234567',
+      password_confirmation: '1234567'
 
     }
   end

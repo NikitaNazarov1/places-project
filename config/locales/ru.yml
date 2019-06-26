@@ -4,10 +4,17 @@ ru:
       write_us: Напишите нам письмо
   static_pages:
     root:
-      Menu: Меню
+      menu: Меню
       headline: "Посетите <mark>Places</mark>"
-      mark: Отмечайте свои любимые места
-      share: Делитесь ими с друзьями
+      mark_and_share: Отмечайте свои любимые места и делитесь с друзьями
       start: Чтобы начать или продолжить Ваше путешествие используйте <strong>меню</strong> выше
-      Sign_Up: Регистрация
-      Sign_In: Вход
+      sign_up: Регистрация
+      sign_in: Вход
+  users:
+    new:
+      sign_up: Регистрация
+      first_name: Имя
+      last_name: Фамилия
+      email: Email
+      password: Пароль
+      password_confirmation: Подтверждение пароля

@@ -1,8 +1,8 @@
 <%= form_with model: @place, id: 'placeUpdate' do |f| %>
   <table>
-    <tr><td><input value="TITRRR" type="text" name="title" id="title-conf" placeholder="Title" maxlength = "50" size="40" autofocus=true required=true> </td> </tr>
-    <tr><td> <textarea name="description" id="description-conf" placeholder="Description" cols="40" rows="8" maxlength = "300" required> DESCRRR </textarea></td> </tr>
-    <tr><td><input type="button" id="btn-upd-conf" value="Update place!" onclick="submitUpdateForm();" /></td></tr>
+    <tr><td><input value="TITRRR" style="font-size: 14px;" type="text" name="title" id="title-conf" placeholder="Title" maxlength = "50" size="20" autofocus=true required=true> </td> </tr>
+    <tr><td> <textarea name="description" style="font-size: 14px;" id="description-conf" placeholder="Description" cols="20" rows="8" maxlength = "300" required> DESCRRR </textarea></td> </tr>
+    <tr><td><input type="button" class="btn btn-outline-success p-1 m-1" id="btn-upd-conf" value="Update" onclick="submitUpdateForm();" /></td></tr>
     <%= hidden_field_tag(:coordinates) %>
   </table>
 <% end %>

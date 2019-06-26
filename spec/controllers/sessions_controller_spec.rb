@@ -9,8 +9,8 @@ RSpec.describe SessionsController, type: :controller do
   let(:params) do
     {
 
-      email: 'johndoe@example.com',
-      password: 'password'
+      email: 'john.doe@example.com',
+      password: '1234567'
 
     }
   end

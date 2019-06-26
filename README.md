@@ -3,7 +3,7 @@
 ## Places project status:
   - [![Build Status](https://travis-ci.com/labs-ruby/places-project.svg?branch=master)](https://travis-ci.com/labs-ruby/places-project)
 
-## [WIP] Necessary steps to get the application up and running:
+## Necessary steps to get the application up and running:
 
 Ruby version:
   - 2.6.3
@@ -12,7 +12,7 @@ Rails version:
   - 5.2.3
 
 System dependencies:
-  - are managed by Bundler (https://bundler.io/) (see Gemfile for details)
+  - are managed by [Bundler](https://bundler.io/) (see Gemfile for details)
 
 Configuration:
   - see "config" directory
@@ -25,7 +25,8 @@ How to run the test suite:
   - rake # will run all RSpec and RuboCop checks
   - bundle exec rspec # only RSpec
 
-Services (job queues, cache servers, search engines, etc.)
+Services:
+  - [Google Maps API](https://developers.google.com/maps/documentation/)
 
-Deployment instructions:
+Deployment:
   - we use [Heroku](https://heroku.com)
