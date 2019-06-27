@@ -75,7 +75,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "places-project_#{Rails.env}"
 
-  host = 'https://placesproject.herokuapp.com'
+  host = 'https://placesprojectactivateaccount.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
