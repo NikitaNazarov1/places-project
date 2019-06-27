@@ -13,7 +13,6 @@ RSpec.describe UsersController, type: :controller do
       email: 'john.doe@example.com',
       password: '1234567',
       password_confirmation: '1234567'
-
     }
   end
 
@@ -58,7 +57,7 @@ RSpec.describe UsersController, type: :controller do
     context 'with valid params' do
       before { post :create, params: { user: valid_params } }
 
-      it { is_expected.to redirect_to assigns(:user) }
+      it { is_expected.to redirect_to('/login') }
     end
 
     context 'with invalid params' do
