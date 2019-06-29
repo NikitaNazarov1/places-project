@@ -9,17 +9,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGVo5Pr11kzS7On3LIm3AkgTiZc6c300E&callback=initMap" defer></script>
   </head>
 
   <body class="d-flex flex-column" style="min-height: 100vh;">
     <header>
       <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-        <%= yield :nav %>
+          <span class="navbar-brand"><%= raw t('.menu') %></span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto"></ul>
+              <form class="form-inline mt-2 mt-md-0">
+                <%= yield :nav %>
+              </form>
+            </div>
       </nav>
     </header>
 
     <main class="flex-fill">
-      <div class="container">
+      <div class="container mt-5 pt-5">
         <%= yield :main %>
       </div>
     </main>

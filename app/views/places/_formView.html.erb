@@ -1,8 +1,15 @@
 <%= form_with model: @place, id: 'placeView' do |f| %>
-  <div id="place_id" onclick="updatePlace()">
-  <h2 id="title" class="title"> <%= f.label :title %> </h2>
-  <p><b><h6 id="description" class="description"> <%= f.label :description %> </h6></b></p>
-  <tr><td> <input type="button" class="btn btn-outline-success p-1 m-1" id="btn-upd" value="Update"> </td> </tr>
-  <tr><td> <input type="button" class="btn btn-outline-danger p-1 m-1" id="btn-del" value="Delete" onclick = "deletePlace()"> </td></tr>
+  <div id="place_id">
+  <p style="font-weight: 600; font-size: 20px;" id="title" class="title">
+    <%= f.label :title %>
+  </p>
+  <p style="font-weight: 300; font-size: 16px;" id="description" class="description">
+    <%= f.label :description %>
+  </p>
+  <p>
+    <%= f.button 'Update', class: 'btn btn-outline-success p-1 m-1', id: 'btn-upd' %>
+    <%= f.button 'Delete', class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del'%>
+  </p>
   <%= hidden_field_tag(:coordinates) %>
+  </div>
 <% end %>

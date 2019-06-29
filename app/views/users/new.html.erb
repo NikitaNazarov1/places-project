@@ -1,12 +1,16 @@
-<h1>Sign Up</h1>
+<% content_for :nav do %>
+  <%= link_to 'Main page'.html_safe, '/',
+                                     class: 'form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2' %>
+<% end %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-   <%= render 'shared/error_messages' %>
+<% content_for :main do %>
+<div class="container col-md-6">
+  <h1>Sign Up</h1>
+  <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages' %>
       <p>
         <%= f.label :first_name %>
-        <%= f.text_field :first_name, class: 'form-control' %>
+        <%= f.text_field :first_name, class: 'form-control', autofocus: true %>
       </p>
       <p>
         <%= f.label :last_name %>
@@ -29,5 +33,5 @@
       </p>
     <% end %>
     <p>Already have an account? <%= link_to "Sign in!", login_path %></p>
-  </div>
 </div>
+<% end %>

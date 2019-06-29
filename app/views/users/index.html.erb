@@ -1,9 +1,23 @@
-<% provide(:title, 'All users') %>
+<% content_for :nav do %>
+  <% if logged_in? %>
+    <%= link_to "My profile", edit_user_path(current_user), class: 'form-control btn btn-outline-primary my-2 my-sm-0 mr-2 ml-2' %>
+    <%= link_to_unless_current "My places", current_user, class: 'form-control btn btn-outline-primary my-2 my-sm-0 mr-2 ml-2' %>
+    <%= link_to "Sign out", logout_path,
+                            method: :delete,
+                            class: 'form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2',
+                            data: { confirm: 'Execute sign out?' } %>
+  <% else %>
+  <% end %>
+<% end %>
+
+<% content_for :main do %>
 <h1>All users</h1>
 
-<%= will_paginate %>
+<span class="pagination_span"><%= will_paginate %></span>
 
 <ul class="users">
   <%= render @users %>
 </ul>
-<%= will_paginate %>
+
+<span class="pagination_span"><%= will_paginate %></span>
+<% end %>

@@ -1,8 +1,23 @@
 <%= form_with model: @place, id: 'placeCreate' do |f| %>
-  <table>
-    <tr><td> <%= f.text_field :title, size: 20, maxlength: 50, required: true, placeholder: 'Title', autofocus: true, style: 'font-size: 14px;' %> </td></tr>
-    <tr><td> <%= text_area_tag :description, '', size: "20x8", maxlength: 300, required: true, placeholder: 'Description', style: 'font-size: 14px;' %> </td></tr>
-    <tr><td> <%= f.submit 'Create', class: 'btn btn-outline-success p-1 m-1' %> </td></tr>
+    <p>
+      <%= f.text_field :title, value: '',
+                               size: 30,
+                               maxlength: 50,
+                               required: true,
+                               autofocus: true,
+                               placeholder: 'Title',
+                               style: 'font-size: 14px;' %>
+    </p>
+    <p>
+      <%= f.text_area :description, value: '',
+                                    size: '30x8',
+                                    maxlength: 300,
+                                    required: true,
+                                    placeholder: 'Description',
+                                    style: 'font-size: 14px;' %>
+    </p>
+    <p>
+      <%= f.submit 'Create', class: 'btn btn-outline-success p-1 m-1' %>
+    </p>
     <%= hidden_field_tag(:coordinates) %>
-  </table>
 <% end %>
