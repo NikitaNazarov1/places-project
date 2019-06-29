@@ -16,15 +16,3 @@ User.create!(first_name:  "Nikita",
              password:              "1234567",
              password_confirmation: "1234567",
              admin: true)
-
-99.times do |n|
-  first_name  = Faker::Name.first_name
-  last_name = Faker::Name.last_name
-  email = "user#{n+1}@example.com"
-  password = "1234567"
-  User.create!(first_name: first_name,
-               last_name: last_name,
-               email: email,
-               password: password,
-               password_confirmation: password)
-end

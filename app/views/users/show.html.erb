@@ -16,7 +16,9 @@
   <%= render 'shared/stats' %>
   <%= render 'show_map' %>
   <div class="formPlaces" id="formPlaces" hidden="true">
+    <% if current_user?(@user) %>
     <%=render 'places/formCreate'%>
+    <% end %>
     <%=render 'places/formUpdate'%>
     <%=render 'places/formView'%>
   </div>
