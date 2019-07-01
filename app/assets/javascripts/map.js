@@ -14,6 +14,7 @@
   var current_place_id;
   var current_marker;
   var current_infowindow;
+  var current_infowindow_callback;
   var infowindow_id = {};
   var marker_id = {};
   var last_id = 0;
@@ -41,7 +42,6 @@
     var marker = new google.maps.Marker({
       position: location,
       map: map,
-      draggable: false,
       animation: google.maps.Animation.DROP,
       title: 'Your marker',
     });
@@ -63,6 +63,7 @@
     google.maps.event.addListener(marker,'click', function() {
       if (callBackContent){
         current_infowindow.setContent(callBackContent);
+        callBackContent = null;
       }
       current_place_id = Number(Object.keys(marker_id).find(key => marker_id[key] === marker));
       current_marker = marker;
@@ -112,7 +113,8 @@
       map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: new google.maps.LatLng(53.928365, 27.685359),
-        mapTypeId: 'satellite'});
+        mapTypeId: google.maps.MapTypeId.HYBRID
+      });
 
       setAllMarkers();
 
@@ -125,6 +127,7 @@
       map.addListener('click', function(event) {
         if (callBackContent){
           current_infowindow.setContent(callBackContent);
+          callBackContent = null;
         }
         deleteMarkers();
         addMarker(event.latLng);});
@@ -141,9 +144,9 @@
           var marker = new google.maps.Marker({
             position: location,
             map: map,
-            // draggable: true,
             title:  place.title
           });
+          map.setCenter(marker.getPosition());
           if (place.id > last_id) {
             last_id = place.id;
           }
@@ -166,6 +169,7 @@
           google.maps.event.addListener(marker,'click', function() {
             if (callBackContent){
               current_infowindow.setContent(callBackContent);
+              callBackContent = null;
             }
             current_place_id = place.id;
             current_marker = marker;
@@ -214,8 +218,8 @@
     let currentView = formView;
 
     currentView.getElementsByTagName('div')[0].id = current_place_id;
-    currentView.getElementsByTagName('label')[0].textContent = title.replace(/(^\s*)|(\s*)$/g, '\n' && '');
-    currentView.getElementsByTagName('label')[1].textContent = description.replace(/(^\s*)|(\s*)$/g, '\n' && '');
+    currentView.getElementsByTagName('label')[0].textContent = title;
+    currentView.getElementsByTagName('label')[1].textContent = description;
     currentView.coordinates.value = coordinates;
 
     current_infowindow.setContent(currentView.innerHTML);
@@ -237,36 +241,28 @@
   }
 
   function updatePlace() {
-    if (event.target.id === 'btn-upd') {
-      title = event.currentTarget.all.title[0].innerText;
-      description = event.currentTarget.all.description[0].innerText;
+    title = event.currentTarget.all.title[0].innerText;
+    description = event.currentTarget.all.description[0].innerText;
 
-      callBackContent = current_infowindow.getContent();
-      formUpdate.title.attributes[0].value = title;
-      formUpdate.description.innerHTML = description;
+    callBackContent = current_infowindow.getContent();
+    formUpdate.title.attributes[0].value = title;
+    formUpdate.description.innerHTML = description;
 
-      current_infowindow.setContent(formUpdate.innerHTML);
+    current_infowindow.setContent(formUpdate.innerHTML);
+    current_infowindow.open(map, current_marker);
 
-      google.maps.event.addListener(current_infowindow, 'closeclick', function(){
-        current_infowindow.setContent(callBackContent);
-        current_infowindow.close();
-      });
-      google.maps.event.addListener(marker, 'click', function(){
-        current_infowindow.setContent(callBackContent);
-        current_infowindow.close();
-      });
-      google.maps.event.addListener(current_infowindow, 'closeclick', function(){
-        current_infowindow.setContent(callBackContent);
-        current_infowindow.close();
-      });
-    }
+    google.maps.event.addListener(current_infowindow, 'closeclick', function(){
+      current_infowindow.setContent(callBackContent);
+      callBackContent = null;
+      current_infowindow.close();
+    });
   }
 
   function submitUpdateForm() {
     let id = current_place_id;
 
-    formView.getElementsByTagName('label')[0].textContent = title.replace(/(^\s*)|(\s*)$/g, '\n' && '');
-    formView.getElementsByTagName('label')[1].textContent = description.replace(/(^\s*)|(\s*)$/g, '\n' && '');
+    formView.getElementsByTagName('label')[0].textContent = title;
+    formView.getElementsByTagName('label')[1].textContent = description;
 
     $.ajax({
       type: 'PATCH',

@@ -1,17 +1,17 @@
 <% content_for :nav do %>
   <% if logged_in? %>
-    <%= link_to "My profile", edit_user_path(current_user), class: 'form-control btn btn-outline-primary my-2 my-sm-0 mr-2 ml-2' %>
-    <%= link_to_unless_current "My places", current_user, class: 'form-control btn btn-outline-primary my-2 my-sm-0 mr-2 ml-2' %>
-    <%= link_to "Sign out", logout_path,
+    <%= link_to t('.my_profile_button'), edit_user_path(current_user), class: 'form-control btn btn-outline-primary my-2 my-sm-0 mr-2 ml-2' %>
+    <%= link_to_unless_current(t('.my_places_button'), current_user, class: 'form-control btn btn-outline-primary my-2 my-sm-0 mr-2 ml-2') {} %>
+    <%= link_to t('.sign_out_button'), logout_path,
                             method: :delete,
                             class: 'form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2',
-                            data: { confirm: 'Execute sign out?' } %>
+                            data: { confirm: t('.sign_out_confirmation') } %>
   <% else %>
   <% end %>
 <% end %>
 
 <% content_for :main do %>
-<h1>All users</h1>
+<h1><%= t('.all_users_title') %></h1>
 
 <span class="pagination_span"><%= will_paginate %></span>
 

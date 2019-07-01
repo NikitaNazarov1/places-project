@@ -1,20 +1,121 @@
 ru:
+  will_paginate:
+    previous_label: <- Назад
+    next_label: Вперёд ->
+  activerecord:
+    attributes:
+      user:
+        first_name: Имя
+        last_name: Фамилия
+        email: Почта
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+    errors:
+      messages:
+        blank: '- поле не заполнено'
+      models:
+        user:
+          attributes:
+            email:
+              invalid: '- неверный адрес'
+              taken: '- адрес занят'
+            password:
+              too_short: содержит менее %{count} символов
+            password_confirmation:
+              confirmation: и пароль отличаются
   layouts:
+    application:
+      menu: Меню
     static_pages:
       write_us: Напишите нам письмо
+      menu: Меню
+  places:
+    formCreate:
+      title: Название
+      description: Описание
+      create_button: Создать
+    formUpdate:
+      title: Название
+      description: Описание
+      update_button: Изменить
+    formView:
+      update_button: Изменить
+      delete_button: Удалить
+  shared:
+    error_messages:
+      the_form_contains: Форма содержит
+    stats:
+      followee:
+        one: фолови
+        few: фоловис
+        other: фоловис
+      follower:
+        one: фоловер
+        few: фоловера
+        other: фоловеров
+  sessions:
+    create:
+      invalid_email_or_password: Ошибка в почте или пароле.
+    new:
+      root_page_button: Вернуться
+      sign_in_title: Вход
+      email: Почта
+      password: Пароль
+      remember_me: это личное устройство
+      sign_in_button: Войти
+      first_time_here: Вы впервые здесь?
+      sign_up: Зарегистрируйтесь!
   static_pages:
     root:
-      menu: Меню
       headline: "Посетите <mark>Places</mark>"
       mark_and_share: Отмечайте свои любимые места и делитесь с друзьями
       start: Чтобы начать или продолжить Ваше путешествие используйте <strong>меню</strong> выше
       sign_up: Регистрация
       sign_in: Вход
   users:
+    user:
+      delete: удалить
+      delete_user: Удалить пользователя
+    following:
+      followees: Фоловис
+    followers:
+      followers: Фоловеры
+    follow:
+      follow_button: Фоловить
+    unfollow:
+      unfollow_button: Не фоловить
+    index:
+      please_sign_in: Пожалуйста, выполните вход.
+      my_profile_button: Моя учётная запись
+      my_places_button: Мои места
+      sign_out_button: Выход
+      sign_out_confirmation: Произвести выход?
+      all_users_title: Все пользователи Places
+    show:
+      find_someone_button: Найти кого-то
+      my_profile_button: Моя учётная запись
+      my_places_button: Мои места
+      sign_out_button: Выход
+      sign_out_confirmation: Произвести выход?
+    show_follow:
+      find_someone_button: Найти кого-то
+      my_profile_button: Моя учётная запись
+      my_places_button: Мои места
+      sign_out_button: Выход
+      sign_out_confirmation: Произвести выход?
+    edit:
+      find_someone_button: Найти кого-то
+      my_places_button: Мои места
+      sign_out_button: Выход
+      sign_out_confirmation: Произвести выход?
+      my_profile_title: Моя учётная запись
+      change_gravatar: Сменить Gravatar
+      please_sign_in: Пожалуйста, выполните вход.
+      save_changes_button: Внести изменения
+      save_changes_confirmation: Сохранить внесённые изменения?
     new:
-      sign_up: Регистрация
-      first_name: Имя
-      last_name: Фамилия
-      email: Email
-      password: Пароль
-      password_confirmation: Подтверждение пароля
+      root_page_button: Вернуться
+      sign_up_title: Регистрация
+      sign_up_button: Создать запись
+      have_an_accout_already: У Вас уже есть учётная запись?
+      sign_in: Заходите!

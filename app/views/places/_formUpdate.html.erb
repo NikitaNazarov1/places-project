@@ -8,18 +8,18 @@
                                  maxlength: 50,
                                  required: true,
                                  autofocus: true,
-                                 placeholder: 'Title',
+                                 placeholder: t('.title'),
                                  class: 'form-control' %>
         <%= f.text_area :description, value: '',
                                       id: 'description-conf',
                                       size: '20x5',
                                       maxlength: 300,
                                       required: true,
-                                      placeholder: 'Description',
+                                      placeholder: t('.description'),
                                       class: 'form-control' %>
       </div>
       <div class="input-group-append">
-        <%= f.button 'Update', class: 'btn btn-outline-success', id: 'btn-upd-conf'%>
+        <%= f.button t('.update_button'), class: 'btn btn-outline-success', id: 'btn-upd-conf'%>
       </div>
     </div>
     <%= hidden_field_tag(:coordinates) %>

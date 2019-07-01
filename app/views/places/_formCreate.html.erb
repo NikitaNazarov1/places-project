@@ -7,17 +7,17 @@
                                  required: true,
                                  pattern: '.*\S+.*',
                                  autofocus: true,
-                                 placeholder: 'Title',
+                                 placeholder: t('.title'),
                                  class: 'form-control' %>
         <%= f.text_area :description, value: '',
                                       size: '20x5',
                                       maxlength: 300,
                                       required: true,
-                                      placeholder: 'Description',
+                                      placeholder: t('.description'),
                                       class: 'form-control'%>
       </div>
       <div class="input-group-append">
-        <%= f.submit 'Create', class: 'btn btn-outline-success', id: 'btn-create' %>
+        <%= f.submit t('.create_button'), class: 'btn btn-outline-success', id: 'btn-create' %>
       </div>
     </div>
     <%= hidden_field_tag(:coordinates) %>

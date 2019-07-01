@@ -8,12 +8,12 @@
   </p>
   <p class="text-center">
     <% if current_user?(@user) %>
-    <%= f.button 'Update', class: 'btn btn-outline-success p-1 m-1', id: 'btn-upd' %>
+    <%= f.button t('.update_button'), class: 'btn btn-outline-success p-1 m-1', id: 'btn-upd' %>
     <% end %>
     <% if current_user.admin? %>
-      <%= f.button 'Delete', class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del'%>
+      <%= f.button t('.delete_button'), class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del'%>
       <% elsif current_user?(@user) %>
-    <%= f.button 'Delete', class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del'%>
+    <%= f.button t('.delete_button'), class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del'%>
     <% end %>
   </p>
   <%= hidden_field_tag(:coordinates) %>
