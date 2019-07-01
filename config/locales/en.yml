@@ -31,21 +31,96 @@
 
 en:
   layouts:
+    application:
+      menu: Menu
     static_pages:
       write_us: Write us an email
+      menu: Menu
+  places:
+    formCreate:
+      title: Title
+      description: Description
+      create_button: Create
+    formUpdate:
+      title: Title
+      description: Description
+      update_button: Change
+    formView:
+      update_button: Change
+      delete_button: Delete
+  shared:
+    error_messages:
+      the_form_contains: The form contains
+    stats:
+      followee:
+        one: followee
+        other: followees
+      follower:
+        one: follower
+        other: followers
+  sessions:
+    create:
+      invalid_email_or_password: Invalid email or password.
+    new:
+      root_page_button: Go Back
+      sign_in_title: Sign In
+      email: Email
+      password: Password
+      remember_me: this is personal device
+      sign_in_button: Sign In
+      first_time_here: Are you first time here?
+      sign_up: Sign Up!
   static_pages:
     root:
-      menu: Menu
-      headline: "Relax in <mark>Places</mark>"
+      headline: Relax in <mark>Places</mark>
       mark_and_share: Mark your favourite ones and share with friends
       start: To begin or continue your journey use the <strong>menu</strong> above
       sign_up: Sign Up
       sign_in: Sign In
   users:
+    user:
+      delete: delete
+      delete_user: Delete user
+    following:
+      followees: Followees
+    followers:
+      followers: Followers
+    follow:
+      follow_button: Follow
+    unfollow:
+      unfollow_button: Unfollow
+    index:
+      please_sign_in: Please, sign in.
+      my_profile_button: My profile
+      my_places_button: My places
+      sign_out_button: Sign out
+      sign_out_confirmation: Execute sign out?
+      all_users_title: All users in Places
+    show:
+      find_someone_button: Find someone
+      my_profile_button: My profile
+      my_places_button: My places
+      sign_out_button: Sign out
+      sign_out_confirmation: Execute sign out?
+    show_follow:
+      find_someone_button: Find someone
+      my_profile_button: My profile
+      my_places_button: My places
+      sign_out_button: Sign out
+      sign_out_confirmation: Execute sign out?
+    edit:
+      find_someone_button: Find someone
+      my_places_button: My places
+      sign_out_button: Sign out
+      sign_out_confirmation: Execute sign out?
+      my_profile_title: My profile
+      change_gravatar: Change Gravatar
+      please_sign_in: Please, sign in.
+      save_changes_button: Save changes
+      save_changes_confirmation: Change your profile?
     new:
-      sign_up: Sign Up
-      first_name: First name
-      last_name: Last name
-      email: Email
-      password: Password
-      password_confirmation: Password confirmation
+      root_page_button: Go back
+      sign_up_title: Sign Up
+      sign_up_button: Sign Up
+      have_an_accout_already: You have an account already?
+      sign_in: Sign In!

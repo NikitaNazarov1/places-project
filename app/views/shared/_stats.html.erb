@@ -2,12 +2,12 @@
 <div class="stats">
   <a href="<%= following_user_path(@user) %>" class="btn btn-light p-1 m-1">
     <strong id="following" class="stat">
-      <%= pluralize @user.following.count, 'followee' %>
+      <%= pluralize @user.following.count, t('.followee', count: @user.following.count) %>
     </strong>
   </a>
   <a href="<%= followers_user_path(@user) %>" class="btn btn-light p-1 m-1">
     <strong id="followers" class="stat">
-      <%= pluralize @user.followers.count, 'follower' %>
+      <%= pluralize @user.followers.count, t('.follower', count: @user.followers.count) %>
     </strong>
   </a>
 </div>

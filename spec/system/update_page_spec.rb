@@ -11,7 +11,7 @@ RSpec.describe 'Things user sees on the update page', type: :system do
   end
 
   it 'Update from' do
-    expect(page).to have_selector('h1', text: 'Edit your profile')
+    expect(page).to have_selector('h1', text: 'My profile')
   end
 
   it 'Update my information' do

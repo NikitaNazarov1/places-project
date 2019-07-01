@@ -1,14 +1,20 @@
 <%= form_with model: @place, id: 'placeView' do |f| %>
   <div id="place_id">
-  <p style="font-weight: 600; font-size: 20px;" id="title" class="title">
-    <%= f.label :title %>
+  <p style="font-weight: 600; font-size: 20px; max-width: 180px;" id="title" class="title">
+    <%= f.label :title, class: 'text-wrap text-break' %>
   </p>
-  <p style="font-weight: 300; font-size: 16px;" id="description" class="description">
-    <%= f.label :description %>
+  <p style="font-weight: 300; font-size: 16px; max-width: 180px;" id="description" class="description">
+    <%= f.label :description, class: 'text-wrap text-break' %>
   </p>
-  <p>
-    <%= f.button 'Update', class: 'btn btn-outline-success p-1 m-1', id: 'btn-upd' %>
-    <%= f.button 'Delete', class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del'%>
+  <p class="text-center">
+    <% if current_user?(@user) %>
+    <%= f.button t('.update_button'), class: 'btn btn-outline-success p-1 m-1', id: 'btn-upd' %>
+    <% end %>
+    <% if current_user.admin? %>
+      <%= f.button t('.delete_button'), class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del'%>
+      <% elsif current_user?(@user) %>
+    <%= f.button t('.delete_button'), class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del'%>
+    <% end %>
   </p>
   <%= hidden_field_tag(:coordinates) %>
   </div>

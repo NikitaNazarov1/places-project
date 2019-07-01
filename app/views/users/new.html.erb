@@ -1,11 +1,11 @@
 <% content_for :nav do %>
-  <%= link_to 'Main page'.html_safe, '/',
+  <%= link_to t('.root_page_button'), '/',
                                      class: 'form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2' %>
 <% end %>
 
 <% content_for :main do %>
 <div class="container col-md-6">
-  <h1>Sign Up</h1>
+  <h1><%= t('.sign_up_title') %></h1>
   <%= form_for(@user) do |f| %>
     <%= render 'shared/error_messages' %>
       <p>
@@ -29,9 +29,9 @@
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </p>
       <p>
-        <%= f.submit 'Sign Up', class: "btn btn-outline-success" %>
+        <%= f.submit t('.sign_up_button'), class: "btn btn-outline-success" %>
       </p>
     <% end %>
-    <p>Already have an account? <%= link_to "Sign in!", login_path %></p>
+    <p> <%= t('.have_an_accout_already') %> <%= link_to t('.sign_in'), login_path %></p>
 </div>
 <% end %>
