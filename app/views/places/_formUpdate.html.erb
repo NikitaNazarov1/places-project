@@ -1,26 +1,26 @@
 <%= form_with model: @place, id: 'placeUpdate' do |f| %>
-    <p>
-      <%= f.text_field :title, value: '',
-                               id: 'title-conf',
-                               name: 'title',
-                               size: 30,
-                               maxlength: 50,
-                               required: true,
-                               autofocus: true,
-                               placeholder: 'Title',
-                               style: 'font-size: 14px;' %>
-    </p>
-    <p>
-      <%= f.text_area :description, value: '',
-                                    id: 'description-conf',
-                                    size: '30x8',
-                                    maxlength: 300,
-                                    required: true,
-                                    placeholder: 'Description',
-                                    style: 'font-size: 14px;' %>
-    </p>
-    <p>
-      <%= f.button 'Update', class: 'btn btn-outline-success p-1 m-1', id: 'btn-upd-conf'%>
-    </p>
+    <div class="input-group">
+      <div>
+        <%= f.text_field :title, value: '',
+                                 id: 'title-conf',
+                                 name: 'title',
+                                 size: 20,
+                                 maxlength: 50,
+                                 required: true,
+                                 autofocus: true,
+                                 placeholder: 'Title',
+                                 class: 'form-control' %>
+        <%= f.text_area :description, value: '',
+                                      id: 'description-conf',
+                                      size: '20x5',
+                                      maxlength: 300,
+                                      required: true,
+                                      placeholder: 'Description',
+                                      class: 'form-control' %>
+      </div>
+      <div class="input-group-append">
+        <%= f.button 'Update', class: 'btn btn-outline-success', id: 'btn-upd-conf'%>
+      </div>
+    </div>
     <%= hidden_field_tag(:coordinates) %>
 <% end %>

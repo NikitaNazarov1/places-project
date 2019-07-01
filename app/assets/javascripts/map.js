@@ -17,6 +17,7 @@
   var infowindow_id = {};
   var marker_id = {};
   var last_id = 0;
+  var callBackContent;
 
   function infoCallbackOpen(infowindow, marker) { return function() {
     infowindow.open(map, marker); };
@@ -40,7 +41,7 @@
     var marker = new google.maps.Marker({
       position: location,
       map: map,
-      // draggable: true,
+      draggable: false,
       animation: google.maps.Animation.DROP,
       title: 'Your marker',
     });
@@ -60,6 +61,9 @@
     current_marker = marker;
 
     google.maps.event.addListener(marker,'click', function() {
+      if (callBackContent){
+        current_infowindow.setContent(callBackContent);
+      }
       current_place_id = Number(Object.keys(marker_id).find(key => marker_id[key] === marker));
       current_marker = marker;
       current_infowindow = infowindow_id[current_place_id]
@@ -103,27 +107,28 @@
   }
 
   document.addEventListener("turbolinks:load", function initMap() {
-    var haightAshbury = {lat: 53.928365, lng: 27.685359};
+    if (document.getElementById("map"))
+    {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: new google.maps.LatLng(53.928365, 27.685359),
+        mapTypeId: 'satellite'});
 
-    map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 10,
-      center: haightAshbury,
-      mapTypeId: 'satellite'
+      setAllMarkers();
 
-    });
+      formCreate = document.getElementById('placeCreate');
+      formView = document.getElementById('placeView');
+      formUpdate = document.getElementById('placeUpdate');
 
-    setAllMarkers();
+      current_infowindow = new google.maps.InfoWindow({});
 
-    formCreate = document.getElementById('placeCreate');
-    formView = document.getElementById('placeView');
-    formUpdate = document.getElementById('placeUpdate');
-
-    current_infowindow = new google.maps.InfoWindow({});
-
-    map.addListener('click', function(event) {
-      deleteMarkers();
-      addMarker(event.latLng);
-    });
+      map.addListener('click', function(event) {
+        if (callBackContent){
+          current_infowindow.setContent(callBackContent);
+        }
+        deleteMarkers();
+        addMarker(event.latLng);});
+    }
   });
 
   function setAllMarkers(){
@@ -159,6 +164,9 @@
           current_infowindow = infowindow;
 
           google.maps.event.addListener(marker,'click', function() {
+            if (callBackContent){
+              current_infowindow.setContent(callBackContent);
+            }
             current_place_id = place.id;
             current_marker = marker;
             current_infowindow = infowindow_id[current_place_id]
@@ -206,8 +214,8 @@
     let currentView = formView;
 
     currentView.getElementsByTagName('div')[0].id = current_place_id;
-    currentView.getElementsByTagName('label')[0].textContent = title;
-    currentView.getElementsByTagName('label')[1].textContent = description;
+    currentView.getElementsByTagName('label')[0].textContent = title.replace(/(^\s*)|(\s*)$/g, '\n' && '');
+    currentView.getElementsByTagName('label')[1].textContent = description.replace(/(^\s*)|(\s*)$/g, '\n' && '');
     currentView.coordinates.value = coordinates;
 
     current_infowindow.setContent(currentView.innerHTML);
@@ -233,7 +241,7 @@
       title = event.currentTarget.all.title[0].innerText;
       description = event.currentTarget.all.description[0].innerText;
 
-      let callBackContent = current_infowindow.getContent();
+      callBackContent = current_infowindow.getContent();
       formUpdate.title.attributes[0].value = title;
       formUpdate.description.innerHTML = description;
 
@@ -243,41 +251,67 @@
         current_infowindow.setContent(callBackContent);
         current_infowindow.close();
       });
+      google.maps.event.addListener(marker, 'click', function(){
+        current_infowindow.setContent(callBackContent);
+        current_infowindow.close();
+      });
+      google.maps.event.addListener(current_infowindow, 'closeclick', function(){
+        current_infowindow.setContent(callBackContent);
+        current_infowindow.close();
+      });
     }
   }
 
   function submitUpdateForm() {
     let id = current_place_id;
-    title  = document.getElementById('title-conf').value;
-    description  = document.getElementById('description-conf').value;
 
-    formView.getElementsByTagName('label')[0].textContent = title;
-    formView.getElementsByTagName('label')[1].textContent = description;
+    formView.getElementsByTagName('label')[0].textContent = title.replace(/(^\s*)|(\s*)$/g, '\n' && '');
+    formView.getElementsByTagName('label')[1].textContent = description.replace(/(^\s*)|(\s*)$/g, '\n' && '');
 
-    if(!(!title || !description)){
-      $.ajax({
-        type: 'PATCH',
-        url: '/places/' + id,
-        headers : {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: { title: title, description: description },
-        success: function(){
-          current_infowindow.setContent(formView.innerHTML);
-        }
-      });
-    }
+    $.ajax({
+      type: 'PATCH',
+      url: '/places/' + id,
+      headers : {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: { title: title, description: description },
+      success: function(){
+        current_infowindow.setContent(formView.innerHTML);
+      }
+    });
   }
 
   $(document).on( 'click', '#btn-del', function() {
-      deletePlace();
+    deletePlace();
   });
 
   $(document).on( 'click', '#btn-upd', function() {
-      updatePlace();
+    updatePlace();
+  });
+
+  $(document).on( 'click', '#btn-create', function() {
+    var description_form = document.getElementById('description').value;
+    if(!description_form.match(/.*\S+.*/)){
+      document.getElementById('description').value = '';
+    }
   });
 
   $(document).on( 'click', '#btn-upd-conf', function() {
+
+    title  = document.getElementById('title-conf').value;
+    description  = document.getElementById('description-conf').value;
+
+    document.getElementById('title-conf').value = document.getElementById('title-conf').value.replace(/\s+/g, '');
+    document.getElementById('description-conf').value = document.getElementById('description-conf').value.replace(/\s+/g, '');
+
+    var title_form = $('#title-conf')[0];
+    var description_form = $('#description-conf')[0]
+
+    if (title_form.checkValidity() && description_form.checkValidity()) {
       submitUpdateForm();
+    }else {
+      description_form.reportValidity();
+      title_form.reportValidity();
+    }
   });
 })();

@@ -5,6 +5,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+# gems delayed jobs
+# gem 'delayed_job'
+# gem 'delayed_job_active_record'
 # Gems for pagination
 gem 'bootstrap-will_paginate'
 gem 'will_paginate', '~> 3.1.0'
@@ -19,7 +22,6 @@ gem 'puma', '~> 3.11'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'json_api_client'
-gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
