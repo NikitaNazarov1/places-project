@@ -5,9 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-# gems delayed jobs
-# gem 'delayed_job'
-# gem 'delayed_job_active_record'
+
 # Gems for pagination
 gem 'bootstrap-will_paginate'
 gem 'will_paginate', '~> 3.1.0'
