@@ -35,21 +35,19 @@ RSpec.describe UserMailer, type: :mailer do
     let(:params) do
       {
 
-          first_name: 'John',
-          last_name: 'Doe',
-          email: 'john.doe@example.com',
-          password: '1234567',
-          password_confirmation: '1234567',
-          activated: true
+        first_name: 'John',
+        last_name: 'Doe',
+        email: 'john.doe@example.com',
+        password: '1234567',
+        password_confirmation: '1234567',
+        activated: true
       }
     end
 
     it 'reset password' do
       visit '/login'
-
       click_link '(forgot password)'
       fill_in 'E-mail', with: user.email
-
       expect do
         click_button 'Submit'
       end.to change(ActionMailer::Base.deliveries, :count).by(1)
