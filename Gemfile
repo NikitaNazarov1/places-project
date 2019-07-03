@@ -5,7 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-
 # Gems for pagination
 gem 'bootstrap-will_paginate'
 gem 'will_paginate', '~> 3.1.0'

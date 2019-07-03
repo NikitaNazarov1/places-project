@@ -15,7 +15,7 @@ RSpec.describe 'Sign In page', type: :system do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
       click_button 'Sign In'
-      expect(page).to have_content('Menu')
+      expect(page).to have_content('John')
     end
   end
 end

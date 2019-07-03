@@ -25,4 +25,34 @@ RSpec.describe UserMailer, type: :mailer do
       expect(mail.from).to eq(['places.project.epam@gmail.com'])
     end
   end
+
+  describe 'password_reset' do
+    let(:mail) { UserMailer.password_reset(user) }
+    let(:new_password) { 'Passw0rd!' }
+    let(:user) do
+      User.create(params)
+    end
+    let(:params) do
+      {
+
+          first_name: 'John',
+          last_name: 'Doe',
+          email: 'john.doe@example.com',
+          password: '1234567',
+          password_confirmation: '1234567',
+          activated: true
+      }
+    end
+
+    it 'reset password' do
+      visit '/login'
+
+      click_link '(forgot password)'
+      fill_in 'E-mail', with: user.email
+
+      expect do
+        click_button 'Submit'
+      end.to change(ActionMailer::Base.deliveries, :count).by(1)
+    end
+  end
 end
