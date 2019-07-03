@@ -14,7 +14,6 @@
   var current_place_id;
   var current_marker;
   var current_infowindow;
-  var current_infowindow_callback;
   var infowindow_id = {};
   var marker_id = {};
   var last_id = 0;
@@ -124,6 +123,8 @@
 
       current_infowindow = new google.maps.InfoWindow({});
 
+      addSearchPanel();
+
       map.addListener('click', function(event) {
         if (callBackContent){
           current_infowindow.setContent(callBackContent);
@@ -194,6 +195,40 @@
     });
   }
 
+  function addSearchPanel(){
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    map.addListener('bounds_changed', function() {
+      searchBox.setBounds(map.getBounds());
+    });
+
+    searchBox.addListener('places_changed', function() {
+        var places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+          return;
+        }
+
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function(place) {
+          if (!place.geometry) {
+            console.log("Returned place contains no geometry");
+            return;
+          }
+
+          if (place.geometry.viewport) {
+            // Only geocodes have viewport.
+            bounds.union(place.geometry.viewport);
+          } else {
+            bounds.extend(place.geometry.location);
+          }
+        });
+        map.fitBounds(bounds);
+      })
+  }
+
   function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setMap(map);
@@ -226,18 +261,14 @@
     markers = markers.pop();
   }
 
-  function deletePlace(){
-    if (confirm("Are you sure?")) {
-      $.ajax({
+  function deletePlace() {
+    $.ajax( {
       type: 'DELETE',
       url: '/places/'+current_place_id,
-      headers : {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
+      headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
       data: {id: current_place_id},
       success: current_marker.setMap(null)
-      });
-    }
+    });
   }
 
   function updatePlace() {
@@ -252,8 +283,10 @@
     current_infowindow.open(map, current_marker);
 
     google.maps.event.addListener(current_infowindow, 'closeclick', function(){
-      current_infowindow.setContent(callBackContent);
-      callBackContent = null;
+      if (callBackContent){
+        current_infowindow.setContent(callBackContent);
+        callBackContent = null;
+      }
       current_infowindow.close();
     });
   }

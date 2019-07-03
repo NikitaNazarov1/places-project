@@ -4,22 +4,20 @@
         <%= f.text_field :title, value: '',
                                  id: 'title-conf',
                                  name: 'title',
-                                 size: 20,
                                  maxlength: 50,
                                  required: true,
                                  autofocus: true,
                                  placeholder: t('.title'),
-                                 class: 'form-control' %>
+                                 class: 'form-control m-1 p-1 aa_input' %>
         <%= f.text_area :description, value: '',
                                       id: 'description-conf',
-                                      size: '20x5',
                                       maxlength: 300,
                                       required: true,
                                       placeholder: t('.description'),
-                                      class: 'form-control' %>
+                                      class: 'form-control m-1 p-1 aa_input' %>
       </div>
       <div class="input-group-append">
-        <%= f.button t('.update_button'), class: 'btn btn-outline-success', id: 'btn-upd-conf'%>
+        <%= f.submit t('.update_button'), class: 'btn btn-outline-success m-1 p-1', id: 'btn-upd-conf' %>
       </div>
     </div>
     <%= hidden_field_tag(:coordinates) %>

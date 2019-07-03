@@ -2,22 +2,20 @@
     <div class="input-group">
       <div>
         <%= f.text_field :title, value: '',
-                                 size: 20,
                                  maxlength: 50,
                                  required: true,
                                  pattern: '.*\S+.*',
                                  autofocus: true,
                                  placeholder: t('.title'),
-                                 class: 'form-control' %>
+                                 class: 'form-control m-1 p-1 aa_input' %>
         <%= f.text_area :description, value: '',
-                                      size: '20x5',
                                       maxlength: 300,
                                       required: true,
                                       placeholder: t('.description'),
-                                      class: 'form-control'%>
+                                      class: 'form-control m-1 p-1 aa_input' %>
       </div>
       <div class="input-group-append">
-        <%= f.submit t('.create_button'), class: 'btn btn-outline-success', id: 'btn-create' %>
+        <%= f.submit t('.create_button'), class: 'btn btn-outline-success m-1 p-1', id: 'btn-create' %>
       </div>
     </div>
     <%= hidden_field_tag(:coordinates) %>

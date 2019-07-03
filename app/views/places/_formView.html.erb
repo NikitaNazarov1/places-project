@@ -11,9 +11,9 @@
     <%= f.button t('.update_button'), class: 'btn btn-outline-success p-1 m-1', id: 'btn-upd' %>
     <% end %>
     <% if current_user.admin? %>
-      <%= f.button t('.delete_button'), class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del'%>
+      <%= f.button t('.delete_button'), class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del', data: { confirm: t('.delete_confirmation') } %>
       <% elsif current_user?(@user) %>
-    <%= f.button t('.delete_button'), class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del'%>
+    <%= f.button t('.delete_button'), class: 'btn btn-outline-danger p-1 m-1', id: 'btn-del', data: { confirm: t('.delete_confirmation') } %>
     <% end %>
   </p>
   <%= hidden_field_tag(:coordinates) %>

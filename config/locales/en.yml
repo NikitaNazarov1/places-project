@@ -44,10 +44,11 @@ en:
     formUpdate:
       title: Title
       description: Description
-      update_button: Change
+      update_button: Modify
     formView:
-      update_button: Change
+      update_button: Modify
       delete_button: Delete
+      delete_confirmation: Are you sure?
   shared:
     error_messages:
       the_form_contains: The form contains

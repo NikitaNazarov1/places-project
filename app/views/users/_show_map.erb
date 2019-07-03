@@ -1,4 +1,4 @@
 <% if current_user?(@user) || current_user.following?(@user) %>
   <div class="map" id="map"></div>
-<% else %>
+  <input id="pac-input" class="controls" type="text" placeholder="Search Box" >
 <% end %>

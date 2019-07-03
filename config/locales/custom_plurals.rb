@@ -2,7 +2,7 @@ I18n::Backend::Simple.include(I18n::Backend::Pluralization)
 I18n.backend.store_translations :ru, i18n: {
   plural: {
     rule: lambda do |n|
-      if [0, 1].include?(n)
+      if n == 1
         :one
       elsif [2, 3, 4].include?(n)
         :few

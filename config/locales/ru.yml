@@ -41,6 +41,7 @@ ru:
     formView:
       update_button: Изменить
       delete_button: Удалить
+      delete_confirmation: Вы уверены?
   shared:
     error_messages:
       the_form_contains: Форма содержит
@@ -116,6 +117,6 @@ ru:
     new:
       root_page_button: Вернуться
       sign_up_title: Регистрация
-      sign_up_button: Создать запись
+      sign_up_button: Зарегистрироваться
       have_an_accout_already: У Вас уже есть учётная запись?
       sign_in: Заходите!
