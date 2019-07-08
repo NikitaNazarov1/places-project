@@ -3,6 +3,8 @@
 Rails.application.routes.draw do
   root 'static_pages#root'
   get 'signup',  to: 'users#new'
+  #get '/account_activations/token/edit',
+  #   to: 'account_activations#edit', as: 'activation'
   get 'sessions/new'
   get 'login'   => 'sessions#new'
   post 'login'   => 'sessions#create'
