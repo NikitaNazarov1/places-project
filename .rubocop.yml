@@ -16,9 +16,11 @@ Metrics/LineLength:
     Exclude:
         - 'spec/controllers/users_controller_spec.rb'
         - 'spec/controllers/relationships_controller_spec.rb'
+        - 'bin/delayed_job'
 Metrics/MethodLength:
   Exclude:
     - 'app/controllers/sessions_controller.rb'
+    - 'app/controllers/account_activations_controller.rb'
 RSpec/NestedGroups:
    Exclude:
         - 'spec/controllers/sessions_controller_spec.rb'
