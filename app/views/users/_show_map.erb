@@ -1,4 +1,7 @@
 <% if current_user?(@user) || current_user.following?(@user) %>
+  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
   <div class="map" id="map"></div>
-  <input id="pac-input" class="controls" type="text" placeholder="Search Box" >
+  <select id="selectPlace" name="selectPlace" class="selcls">
+    <option>Custom places</option>
+  </select>
 <% end %>

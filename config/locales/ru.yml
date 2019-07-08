@@ -120,3 +120,11 @@ ru:
       sign_up_button: Зарегистрироваться
       have_an_accout_already: У Вас уже есть учётная запись?
       sign_in: Заходите!
+    search:
+      find_someone_button: Найти кого-то
+      my_profile_button: Моя учётная запись
+      my_places_button: Мои места
+      sign_out_button: Выход
+      sign_out_confirmation: Произвести выход?
+      back_to_all: Назад
+      searching_results: Результаты поиска

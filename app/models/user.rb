@@ -99,4 +99,12 @@ class User < ApplicationRecord
     self.activation_token  = User.new_token
     self.activation_digest = User.digest(activation_token)
   end
+
+  def self.search(params)
+    if params[:search].present?
+      users = User.where("first_name || ' ' || last_name like ?",
+                         "%#{params[:search]}%")
+    end
+    users # returns the users containing the search words
+  end
 end

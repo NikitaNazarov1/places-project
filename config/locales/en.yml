@@ -125,3 +125,11 @@ en:
       sign_up_button: Sign Up
       have_an_accout_already: You have an account already?
       sign_in: Sign In!
+    search:
+      find_someone_button: Find someone
+      my_profile_button: My profile
+      my_places_button: My places
+      sign_out_button: Sign out
+      sign_out_confirmation: Execute sign out?
+      back_to_all: Back
+      searching_results: Searching results

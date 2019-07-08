@@ -11,20 +11,13 @@
 <% end %>
 
 <% content_for :main do %>
-<h1><%= t('.all_users_title') %></h1>
 
-<span class="pagination_span"><%= will_paginate %></span>
+<h1><%= t('.searching_results') %></h1>
 
-<div class="form-inline mt-2 mt-md-0">
-  <%= form_tag search_users_path, method: :get do %>
-   <%= text_field_tag :search, nil, placeholder: "Search" %>
-   <%= submit_tag "Search" %>
-  <% end %>
-</div>
+<%= link_to t('.back_to_all'), users_path, class: 'btn btn-sm btn-primary' %>
 
 <ul class="users">
   <%= render @users %>
 </ul>
 
-<span class="pagination_span"><%= will_paginate %></span>
 <% end %>
