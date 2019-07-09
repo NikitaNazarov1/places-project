@@ -93,10 +93,10 @@
             }
           });
           setCurrentValue();
+          createView();
+          last_id = 0;
         }
       });
-      createView();
-      last_id = 0;
     });
   }
 
@@ -211,7 +211,6 @@
 
   function addMarkerPanel(){
     select = document.getElementById('selectPlace');
-    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(select);
     changeSelectOptions();
     select.addEventListener('click', function (e) {
       for (var i = 0; i < infowindows.length; i++) {
@@ -309,6 +308,7 @@
 
     current_infowindow.setContent(currentView.innerHTML);
     markers = markers.pop();
+    // infowindows.push(current_infowindow);
     changeSelectOptions();
   }
 
@@ -351,6 +351,7 @@
 
     formView.getElementsByTagName('label')[0].textContent = title;
     formView.getElementsByTagName('label')[1].textContent = description;
+    formView.getElementsByTagName('div')[0].id = id;
 
     $.ajax({
       type: 'PATCH',
@@ -360,6 +361,7 @@
       },
       data: { title: title, description: description },
       success: function(){
+        callBackContent = null;
         infowindows = infowindows.filter(val => val !== current_infowindow);
         current_infowindow.setContent(formView.innerHTML);
         infowindows.push(current_infowindow);

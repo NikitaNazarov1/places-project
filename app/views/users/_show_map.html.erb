@@ -1,6 +1,9 @@
 <% if current_user?(@user) || current_user.following?(@user) %>
   <p class="d-inline-flex">
     <%= text_field_tag 'pac-input', nil, id: 'pac-input', class: 'form-control m-1 p-1 w-auto', placeholder: t('.locate') %>
+    <select id="selectPlace" name="selectPlace" class="form-control w-auto m-1 p-1">
+      <option class="select_placeholder" value="" hidden><%= t('.marked_places') %></option>
+    </select>
   </p>
   <div class="map" id="map"></div>
 <% end %>
