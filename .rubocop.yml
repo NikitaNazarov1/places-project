@@ -17,6 +17,9 @@ Metrics/LineLength:
         - 'spec/controllers/users_controller_spec.rb'
         - 'spec/controllers/relationships_controller_spec.rb'
         - 'bin/delayed_job'
+Lint/IneffectiveAccessModifier:
+  Exclude:
+    - 'app/models/user.rb'
 Metrics/MethodLength:
   Exclude:
     - 'app/controllers/sessions_controller.rb'
