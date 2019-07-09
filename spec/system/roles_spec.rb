@@ -10,7 +10,8 @@ RSpec.describe 'Roles behaviour', type: :system, js: true do
       last_name: 'Admin',
       email: 'main.admin@example.com',
       password: 'adm1n999',
-      admin: true
+      admin: true,
+      activated: true
     }
   end
   let(:admin) do
