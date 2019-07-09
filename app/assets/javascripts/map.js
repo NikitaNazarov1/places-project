@@ -221,16 +221,20 @@
           var marker = marker_id[Number(current_id)];
           closeAllOtherInfowindow(infowindows[i], marker);
           infowindows[i].open(map,marker);
+          if (callBackContent){
+            current_infowindow.setContent(callBackContent);
+            callBackContent = null;
+          }
+          current_place_id = Number(Object.keys(marker_id).find(key => marker_id[key] === marker));
+          current_marker = marker;
+          current_infowindow = infowindow_id[current_place_id]
         }
       }
     });
   }
 
   function changeSelectOptions(){
-    $("#selectPlace").empty();
-    $('#selectPlace').append($('<option>', {
-        text : 'Custom places'
-    }));
+    $("#selectPlace").find('*').not('.select_placeholder').remove();
     $.each(infowindows, function (i) {
       var current_title = $(infowindows[i].content)[3].getElementsByClassName('title')[0].innerText;
       var current_id = $(infowindows[i].content)[3].id;

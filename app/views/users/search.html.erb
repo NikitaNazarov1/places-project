@@ -12,12 +12,18 @@
 
 <% content_for :main do %>
 
-<h1><%= t('.searching_results') %></h1>
+<h1><%= t('.search_results') %></h1>
 
-<%= link_to t('.back_to_all'), users_path, class: 'btn btn-sm btn-primary' %>
+<p>
+  <%= link_to t('.back_to_all'), users_path, class: 'btn btn-primary' %>
+</p>
 
+<% if @users.empty? %>
+<h4><%= t('.no_one_was_found') %></h4>
+<% else %>
 <ul class="users">
   <%= render @users %>
 </ul>
+<% end %>
 
 <% end %>

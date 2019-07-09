@@ -102,8 +102,8 @@ class User < ApplicationRecord
 
   def self.search(params)
     if params[:search].present?
-      users = User.where("first_name || ' ' || last_name like ?",
-                         "%#{params[:search]}%")
+      users = User.where("lower(first_name) || ' ' || lower(last_name) like ?",
+                         "%#{params[:search].downcase.strip.squeeze}%")
     end
     users # returns the users containing the search words
   end

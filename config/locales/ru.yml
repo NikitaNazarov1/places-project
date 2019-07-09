@@ -92,6 +92,7 @@ ru:
       sign_out_button: Выход
       sign_out_confirmation: Произвести выход?
       all_users_title: Все пользователи Places
+      search_button: Найти
     show:
       find_someone_button: Найти кого-то
       my_profile_button: Моя учётная запись
@@ -104,6 +105,9 @@ ru:
       my_places_button: Мои места
       sign_out_button: Выход
       sign_out_confirmation: Произвести выход?
+    show_map:
+      locate: Переместиться в...
+      marked_places: Отмеченные места
     edit:
       find_someone_button: Найти кого-то
       my_places_button: Мои места
@@ -127,4 +131,5 @@ ru:
       sign_out_button: Выход
       sign_out_confirmation: Произвести выход?
       back_to_all: Назад
-      searching_results: Результаты поиска
+      search_results: Результаты поиска
+      no_one_was_found: Никто не был найден.

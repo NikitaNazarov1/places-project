@@ -4,6 +4,7 @@
   <% if current_user.admin? && !current_user?(user) %>
     <span class="lead">|</span> <%= link_to t('.delete'), user,
                             method: :delete,
+                            id: 'user_deletion_link',
                             data: { confirm: "#{t('.delete_user')} \"#{user.first_name} #{user.last_name}\"?" } %>
   <% end %>
 </li>

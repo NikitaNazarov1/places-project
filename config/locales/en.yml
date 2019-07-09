@@ -97,6 +97,7 @@ en:
       sign_out_button: Sign out
       sign_out_confirmation: Execute sign out?
       all_users_title: All users in Places
+      search_button: Find
     show:
       find_someone_button: Find someone
       my_profile_button: My profile
@@ -109,6 +110,9 @@ en:
       my_places_button: My places
       sign_out_button: Sign out
       sign_out_confirmation: Execute sign out?
+    show_map:
+      locate: Locate...
+      marked_places: Marked places
     edit:
       find_someone_button: Find someone
       my_places_button: My places
@@ -132,4 +136,5 @@ en:
       sign_out_button: Sign out
       sign_out_confirmation: Execute sign out?
       back_to_all: Back
-      searching_results: Searching results
+      search_results: Search results
+      no_one_was_found: No one was found.

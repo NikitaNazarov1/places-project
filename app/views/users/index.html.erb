@@ -15,12 +15,10 @@
 
 <span class="pagination_span"><%= will_paginate %></span>
 
-<div class="form-inline mt-2 mt-md-0">
-  <%= form_tag search_users_path, method: :get do %>
-   <%= text_field_tag :search, nil, placeholder: "Search" %>
-   <%= submit_tag "Search" %>
-  <% end %>
-</div>
+<%= form_tag search_users_path, method: :get, class: 'form-inline col-md-5' do %>
+  <%= text_field_tag :search, nil, class: 'form-control m-1 w-75', autofocus: true %>
+  <%= submit_tag t('.search_button'), class: 'btn btn-outline-success m-1' %>
+<% end %>
 
 <ul class="users">
   <%= render @users %>
