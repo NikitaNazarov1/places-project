@@ -8,8 +8,8 @@ class UserMailer < ApplicationMailer
 
   default from: 'places.project.epam@gmail.com'
   def account_activation(user)
-  @user = user
-   mail to: user.email, subject: 'Account activation'
+    @user = user
+    mail to: user.email, subject: 'Account activation'
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
