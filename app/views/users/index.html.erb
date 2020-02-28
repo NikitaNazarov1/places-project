@@ -1,9 +1,28 @@
-<% provide(:title, 'All users') %>
-<h1>All users</h1>
+<% content_for :nav do %>
+  <% if logged_in? %>
+    <%= link_to t('.my_profile_button'), edit_user_path(current_user), class: 'form-control btn btn-outline-primary my-2 my-sm-0 mr-2 ml-2' %>
+    <%= link_to_unless_current(t('.my_places_button'), current_user, class: 'form-control btn btn-outline-primary my-2 my-sm-0 mr-2 ml-2') {} %>
+    <%= link_to t('.sign_out_button'), logout_path,
+                            method: :delete,
+                            class: 'form-control btn btn-outline-secondary my-2 my-sm-0 mr-2 ml-2',
+                            data: { confirm: t('.sign_out_confirmation') } %>
+  <% else %>
+  <% end %>
+<% end %>
 
-<%= will_paginate %>
+<% content_for :main do %>
+<h1><%= t('.all_users_title') %></h1>
+
+<span class="pagination_span"><%= will_paginate %></span>
+
+<%= form_tag search_users_path, method: :get, class: 'form-inline col-md-5' do %>
+  <%= text_field_tag :search, nil, class: 'form-control m-1 w-75', autofocus: true %>
+  <%= submit_tag t('.search_button'), class: 'btn btn-outline-success m-1' %>
+<% end %>
 
 <ul class="users">
   <%= render @users %>
 </ul>
-<%= will_paginate %>
+
+<span class="pagination_span"><%= will_paginate %></span>
+<% end %>

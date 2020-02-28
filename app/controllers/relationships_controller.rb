@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# class relationship controller
 class RelationshipsController < ApplicationController
   before_action :logged_in_user
 

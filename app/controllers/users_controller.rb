@@ -9,6 +9,14 @@ class UsersController < ApplicationController
 
   before_action :admin_user, only: :destroy
 
+  def search
+    if params[:search].blank?
+      redirect_to users_url
+    else
+      @users = User.search(params)
+    end
+  end
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = 'User deleted'
@@ -16,14 +24,14 @@ class UsersController < ApplicationController
   end
 
   def following
-    @title = 'Following'
+    @title = t('.followees')
     @user  = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def followers
-    @title = 'Followers'
+    @title = t('.followers')
     @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
@@ -81,7 +89,7 @@ class UsersController < ApplicationController
     return if logged_in?
 
     store_location
-    flash[:danger] = 'Please log in.'
+    flash[:danger] = t('.please_sign_in')
     redirect_to login_url
   end
 
