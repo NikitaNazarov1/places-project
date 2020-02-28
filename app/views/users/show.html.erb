@@ -12,15 +12,17 @@
 <% end %>
 
 <% content_for :main do %>
-  <div class="d-inline-flex input-group-text">
-    <h1>
-      <% if current_user?(@user) %>
-        <%= link_to gravatar_for(@user), edit_user_path(current_user) %>
-      <% else %>
-        <%= gravatar_for @user %>
-      <% end %>
-      <%= @user.first_name %>
-      <%= @user.last_name %></h1>
+  <div class="d-inline-flex ">
+    <div class="input-group-text">
+      <h1>
+        <% if current_user?(@user) %>
+          <%= link_to gravatar_for(@user), edit_user_path(current_user) %>
+        <% else %>
+          <%= gravatar_for @user %>
+        <% end %>
+        <%= @user.first_name %>
+        <%= @user.last_name %></h1>
+    </div>
     <%= render 'follow_form' if logged_in? %></div>
   <%= render 'shared/stats' %>
   <%= render 'show_map' %>
