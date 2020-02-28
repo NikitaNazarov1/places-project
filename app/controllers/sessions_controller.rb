@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Session controller
 class SessionsController < ApplicationController
   def new; end
 
@@ -18,7 +17,7 @@ class SessionsController < ApplicationController
         redirect_to root_url
       end
     else
-      flash.now[:danger] = 'Invalid email/password combination'
+      flash.now[:danger] = t('.invalid_email_or_password')
       render 'new'
     end
   end

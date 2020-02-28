@@ -12,9 +12,11 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    collection do
+      get :search # create a new path for the searching
+    end
   end
   resources :relationships, only: [:create, :destroy]
-  resources :users
   resources :places
   resources :account_activations, only: [:edit]
 end

@@ -21,8 +21,7 @@ RSpec/NestedGroups:
         - 'spec/controllers/sessions_controller_spec.rb'
 RSpec/ExampleLength:
     Exclude:
-        - 'spec/system/signup_page_spec.rb'
-        - 'spec/system/login_page_spec.rb'
+        - 'spec/system/*'
 Style/MultilineTernaryOperator:
     Exclude:
          - 'app/models/user.rb'

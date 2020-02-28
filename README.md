@@ -12,18 +12,18 @@ Rails version:
   - 5.2.3
 
 System dependencies:
-  - are managed by [Bundler](https://bundler.io/) (see Gemfile for details)
+  - are managed by [Bundler](https://bundler.io/) *see Gemfile for details*
 
 Configuration:
-  - see "config" directory
+  - see `/config` directory
 
 Database initialization:
-  - rake db:setup (create, load schema and seed)
-  - rake db:migrate
+  - `rake db:setup` *create, load schema and seed*
+  - `rake db:migrate`
 
 How to run the test suite:
-  - rake # will run all RSpec and RuboCop checks
-  - bundle exec rspec # only RSpec
+  - `rake` *will run all RSpec and RuboCop checks*
+  - `bundle exec rspec` *only RSpec*
 
 Services:
   - [Google Maps API](https://developers.google.com/maps/documentation/)

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# class Application controller
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
@@ -18,11 +17,14 @@ class ApplicationController < ActionController::Base
     return if logged_in?
 
     store_location
-    flash[:danger] = 'Please log in.'
+    flash[:danger] = t('.please_sign_in')
     redirect_to login_url
   end
 
   def extract_locale_from_accept_language_header
-    request.env['HTTP_ACCEPT_LANGUAGE'].to_s.scan(/^[a-z]{2}/).first
+    request.env['HTTP_ACCEPT_LANGUAGE'].to_s.scan(/[a-z]{2}/).each do |l|
+      return l if I18n.available_locales.to_s.scan(/[a-z]{2}/).include?(l)
+    end
+    'en'
   end
 end
