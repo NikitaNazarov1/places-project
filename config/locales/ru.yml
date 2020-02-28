@@ -47,12 +47,12 @@ ru:
       the_form_contains: Форма содержит
     stats:
       followee:
-        one: фолови
-        few: фоловис
+        one: подписчик
+        few: подписчики
         other: фоловис
       follower:
-        one: фоловер
-        few: фоловера
+        one: подписка
+        few: подписки
         other: фоловеров
   sessions:
     create:
@@ -68,7 +68,7 @@ ru:
       sign_up: Зарегистрируйтесь!
   static_pages:
     root:
-      headline: "Посетите <mark>Places</mark>"
+      headline: Посетите Ваши Места
       mark_and_share: Отмечайте свои любимые места и делитесь с друзьями
       start: Чтобы начать или продолжить Ваше путешествие используйте <strong>меню</strong> выше
       sign_up: Регистрация
